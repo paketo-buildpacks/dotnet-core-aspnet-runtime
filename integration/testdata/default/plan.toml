@@ -1,0 +1,5 @@
+[[requires]]
+  name = "dotnet-core-aspnet-runtime"
+
+  [requires.metadata]
+    launch = true
