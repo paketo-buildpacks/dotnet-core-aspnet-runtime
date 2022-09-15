@@ -17,7 +17,6 @@ func Detect(environment Environment) packit.DetectFunc {
 				Metadata: map[string]interface{}{
 					"version-source": "BP_DOTNET_FRAMEWORK_VERSION",
 					"version":        environment.DotnetFrameworkVersion,
-					"launch":         true,
 				},
 			})
 		}

@@ -28,7 +28,7 @@ var (
 
 	settings struct {
 		Buildpacks struct {
-			DotnetCoreRuntime struct {
+			DotnetCoreAspnetRuntime struct {
 				Online  string
 				Offline string
 			}
@@ -60,12 +60,12 @@ func TestIntegration(t *testing.T) {
 
 	buildpackStore := occam.NewBuildpackStore()
 
-	settings.Buildpacks.DotnetCoreRuntime.Online, err = buildpackStore.Get.
+	settings.Buildpacks.DotnetCoreAspnetRuntime.Online, err = buildpackStore.Get.
 		WithVersion("1.2.3").
 		Execute(root)
 	Expect(err).NotTo(HaveOccurred())
 
-	settings.Buildpacks.DotnetCoreRuntime.Online, err = buildpackStore.Get.
+	settings.Buildpacks.DotnetCoreAspnetRuntime.Offline, err = buildpackStore.Get.
 		WithOfflineDependencies().
 		WithVersion("1.2.3").
 		Execute(root)

@@ -69,7 +69,6 @@ func testDetect(t *testing.T, context spec.G, it spec.S) {
 						Metadata: map[string]interface{}{
 							"version-source": "BP_DOTNET_FRAMEWORK_VERSION",
 							"version":        "1.2.3",
-							"launch":         true,
 						},
 					},
 				},

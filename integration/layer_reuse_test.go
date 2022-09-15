@@ -68,7 +68,7 @@ func testLayerReuse(t *testing.T, context spec.G, it spec.S) {
 			firstImage, logs, err = pack.WithNoColor().Build.
 				WithPullPolicy("never").
 				WithBuildpacks(
-					settings.Buildpacks.DotnetCoreRuntime.Online,
+					settings.Buildpacks.DotnetCoreAspnetRuntime.Online,
 					settings.Buildpacks.BuildPlan.Online,
 				).
 				Execute(name, source)
@@ -85,7 +85,7 @@ func testLayerReuse(t *testing.T, context spec.G, it spec.S) {
 			secondImage, logs, err = pack.WithNoColor().Build.
 				WithPullPolicy("never").
 				WithBuildpacks(
-					settings.Buildpacks.DotnetCoreRuntime.Online,
+					settings.Buildpacks.DotnetCoreAspnetRuntime.Online,
 					settings.Buildpacks.BuildPlan.Online,
 				).
 				Execute(name, source)
@@ -165,7 +165,7 @@ func testLayerReuse(t *testing.T, context spec.G, it spec.S) {
 			firstImage, logs, err = pack.WithNoColor().Build.
 				WithPullPolicy("never").
 				WithBuildpacks(
-					settings.Buildpacks.DotnetCoreRuntime.Online,
+					settings.Buildpacks.DotnetCoreAspnetRuntime.Online,
 					settings.Buildpacks.BuildPlan.Online,
 				).
 				WithEnv(map[string]string{
@@ -185,7 +185,7 @@ func testLayerReuse(t *testing.T, context spec.G, it spec.S) {
 			secondImage, logs, err = pack.WithNoColor().Build.
 				WithPullPolicy("never").
 				WithBuildpacks(
-					settings.Buildpacks.DotnetCoreRuntime.Online,
+					settings.Buildpacks.DotnetCoreAspnetRuntime.Online,
 					settings.Buildpacks.BuildPlan.Online,
 				).
 				WithEnv(map[string]string{
