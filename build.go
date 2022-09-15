@@ -1,6 +1,7 @@
 package dotnetcoreaspnetruntime
 
 import (
+	"errors"
 	"fmt"
 	"os"
 	"path/filepath"
@@ -52,14 +53,22 @@ func Build(
 ) packit.BuildFunc {
 	return func(context packit.BuildContext) (packit.BuildResult, error) {
 		logger.Title("%s %s", context.BuildpackInfo.Name, context.BuildpackInfo.Version)
-		logger.Process("Resolving .NET Core ASP.NET Runtime version")
 
+		// This no-op path is to accommodate for it the dotnet-publish buildpack
+		// generates a self-contained app
 		frameworkVersion, err := configParser.Parse(filepath.Join(context.WorkingDir, "*.runtimeconfig.json"))
 		if err != nil {
-			panic(err)
+			if errors.Is(err, os.ErrNotExist) {
+				logger.Process("Skipping build process as there was no runtimeconfig.json found")
+				logger.Break()
+				return packit.BuildResult{}, nil
+			}
+			return packit.BuildResult{}, err
 		}
 
 		if frameworkVersion == "" {
+			logger.Process("Skipping build process as there were no frameworks specified in the runtimeconfig.json")
+			logger.Break()
 			return packit.BuildResult{}, nil
 		} else {
 			context.Plan.Entries = append([]packit.BuildpackPlanEntry{
@@ -73,6 +82,8 @@ func Build(
 			}, context.Plan.Entries...)
 		}
 
+		logger.Process("Resolving .NET Core ASP.NET Runtime version")
+
 		priorities := []interface{}{
 			"BP_DOTNET_FRAMEWORK_VERSION",
 			regexp.MustCompile(`.*\.(cs)|(fs)|(vb)proj`),
@@ -83,16 +94,14 @@ func Build(
 
 		dependency, err := versionResolver.Resolve(filepath.Join(context.CNBPath, "buildpack.toml"), entry, context.Stack)
 		if err != nil {
-			panic(err)
-			// return packit.BuildResult{}, err
+			return packit.BuildResult{}, err
 		}
 
 		logger.SelectedDependency(entry, dependency, clock.Now())
 
 		dotnetCoreAspnetRuntimeLayer, err := context.Layers.Get("dotnet-core-aspnet-runtime")
 		if err != nil {
-			panic(err)
-			// return packit.BuildResult{}, err
+			return packit.BuildResult{}, err
 		}
 
 		bom := dependencies.GenerateBillOfMaterials(dependency)
@@ -127,8 +136,7 @@ func Build(
 
 		dotnetCoreAspnetRuntimeLayer, err = dotnetCoreAspnetRuntimeLayer.Reset()
 		if err != nil {
-			panic(err)
-			// return packit.BuildResult{}, err
+			return packit.BuildResult{}, err
 		}
 
 		dotnetCoreAspnetRuntimeLayer.Launch, dotnetCoreAspnetRuntimeLayer.Build, dotnetCoreAspnetRuntimeLayer.Cache = launch, build, build
@@ -138,8 +146,7 @@ func Build(
 			return dependencies.Deliver(dependency, context.CNBPath, dotnetCoreAspnetRuntimeLayer.Path, context.Platform.Path)
 		})
 		if err != nil {
-			panic(err)
-			// return packit.BuildResult{}, err
+			return packit.BuildResult{}, err
 		}
 
 		logger.Action("Completed in %s", duration.Round(time.Millisecond))
@@ -164,8 +171,7 @@ func Build(
 			return err
 		})
 		if err != nil {
-			panic(err)
-			// return packit.BuildResult{}, err
+			return packit.BuildResult{}, err
 		}
 
 		logger.Action("Completed in %s", duration.Round(time.Millisecond))
@@ -174,8 +180,7 @@ func Build(
 		logger.FormattingSBOM(context.BuildpackInfo.SBOMFormats...)
 		dotnetCoreAspnetRuntimeLayer.SBOM, err = sbomContent.InFormats(context.BuildpackInfo.SBOMFormats...)
 		if err != nil {
-			panic(err)
-			// return packit.BuildResult{}, err
+			return packit.BuildResult{}, err
 		}
 
 		return packit.BuildResult{

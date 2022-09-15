@@ -79,5 +79,8 @@ func TestIntegration(t *testing.T) {
 
 	suite := spec.New("Integration", spec.Report(report.Terminal{}), spec.Parallel())
 	suite("Default", testDefault)
+	suite("LayerReuse", testLayerReuse)
+	suite("Offline", testOffline)
+	suite("RuntimeconfigNoop", testRuntimeconfigNoop)
 	suite.Run(t)
 }

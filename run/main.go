@@ -35,7 +35,7 @@ func main() {
 		os.Exit(1)
 	}
 
-	logEmitter := scribe.NewEmitter(os.Stdout)
+	logEmitter := scribe.NewEmitter(os.Stdout).WithLevel(os.Getenv("BP_LOG_LEVEL"))
 	entryResolver := draft.NewPlanner()
 	dependencyManager := postal.NewService(cargo.NewTransport())
 	runtimeVersionResolver := dotnetcoreaspnetruntime.NewRuntimeVersionResolver(logEmitter, environment)

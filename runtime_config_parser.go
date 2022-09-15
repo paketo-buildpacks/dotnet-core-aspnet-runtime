@@ -32,7 +32,7 @@ func (p RuntimeConfigParser) Parse(glob string) (string, error) {
 	}
 
 	if len(files) == 0 {
-		return "", nil
+		return "", os.ErrNotExist
 	}
 
 	path := files[0]

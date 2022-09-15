@@ -2,6 +2,7 @@ package dotnetcoreaspnetruntime_test
 
 import (
 	"bytes"
+	"errors"
 	"os"
 	"path/filepath"
 	"testing"
@@ -326,6 +327,158 @@ func testBuild(t *testing.T, context spec.G, it spec.S) {
 			Expect(result).To(Equal(packit.BuildResult{}))
 
 			Expect(configParser.ParseCall.Receives.RuntimeConfigFileGlob).To(Equal(filepath.Join(workingDir, "*.runtimeconfig.json")))
+		})
+	})
+	context("failure cases", func() {
+		context("when the config parser fails", func() {
+			it.Before(func() {
+				configParser.ParseCall.Returns.Error = errors.New("failed to parse config")
+			})
+
+			it("returns an error", func() {
+				_, err := build(packit.BuildContext{
+					CNBPath: cnbDir,
+					Plan: packit.BuildpackPlan{
+						Entries: []packit.BuildpackPlanEntry{
+							{
+								Name: "dotnet-core-aspnet-runtime",
+								Metadata: map[string]interface{}{
+									"version-source": "BP_DOTNET_FRAMEWORK_VERSION",
+									"version":        "2.5.x",
+								},
+							},
+						},
+					},
+					Layers: packit.Layers{Path: layersDir},
+				})
+				Expect(err).To(MatchError("failed to parse config"))
+			})
+		})
+
+		context("when a dependency cannot be resolved", func() {
+			it.Before(func() {
+				versionResolver.ResolveCall.Returns.Error = errors.New("failed to resolve version")
+			})
+
+			it("returns an error", func() {
+				_, err := build(packit.BuildContext{
+					CNBPath: cnbDir,
+					Plan: packit.BuildpackPlan{
+						Entries: []packit.BuildpackPlanEntry{
+							{
+								Name: "dotnet-core-aspnet-runtime",
+								Metadata: map[string]interface{}{
+									"version-source": "BP_DOTNET_FRAMEWORK_VERSION",
+									"version":        "2.5.x",
+								},
+							},
+						},
+					},
+					Layers: packit.Layers{Path: layersDir},
+				})
+				Expect(err).To(MatchError("failed to resolve version"))
+			})
+		})
+
+		context("when the layer get fails", func() {
+			it.Before(func() {
+				Expect(os.Chmod(layersDir, 0000)).To(Succeed())
+			})
+
+			it.After(func() {
+				Expect(os.Chmod(layersDir, os.ModePerm)).To(Succeed())
+			})
+
+			it("returns an error", func() {
+				_, err := build(packit.BuildContext{
+					CNBPath: cnbDir,
+					Plan: packit.BuildpackPlan{
+						Entries: []packit.BuildpackPlanEntry{
+							{
+								Name: "dotnet-core-aspnet-runtime",
+								Metadata: map[string]interface{}{
+									"version-source": "BP_DOTNET_FRAMEWORK_VERSION",
+									"version":        "2.5.x",
+								},
+							},
+						},
+					},
+					Layers: packit.Layers{Path: layersDir},
+				})
+				Expect(err).To(MatchError(ContainSubstring("permission denied")))
+			})
+		})
+
+		context("when a dependency download fails", func() {
+			it.Before(func() {
+				dependencyManager.DeliverCall.Returns.Error = errors.New("failed to download dependency")
+			})
+
+			it("returns an error", func() {
+				_, err := build(packit.BuildContext{
+					CNBPath: cnbDir,
+					Plan: packit.BuildpackPlan{
+						Entries: []packit.BuildpackPlanEntry{
+							{
+								Name: "dotnet-core-aspnet-runtime",
+								Metadata: map[string]interface{}{
+									"version-source": "BP_DOTNET_FRAMEWORK_VERSION",
+									"version":        "2.5.x",
+								},
+							},
+						},
+					},
+					Layers: packit.Layers{Path: layersDir},
+				})
+				Expect(err).To(MatchError("failed to download dependency"))
+			})
+		})
+
+		context("when generating the SBOM returns an error", func() {
+			it.Before(func() {
+				sbomGenerator.GenerateFromDependencyCall.Returns.Error = errors.New("failed to generate SBOM")
+			})
+
+			it("returns an error", func() {
+				_, err := build(packit.BuildContext{
+					CNBPath: cnbDir,
+					Plan: packit.BuildpackPlan{
+						Entries: []packit.BuildpackPlanEntry{
+							{
+								Name: "dotnet-core-aspnet-runtime",
+								Metadata: map[string]interface{}{
+									"version-source": "BP_DOTNET_FRAMEWORK_VERSION",
+									"version":        "2.5.x",
+								},
+							},
+						},
+					},
+					Layers: packit.Layers{Path: layersDir},
+				})
+				Expect(err).To(MatchError(ContainSubstring("failed to generate SBOM")))
+			})
+		})
+
+		context("when formatting the SBOM returns an error", func() {
+			it("returns an error", func() {
+				_, err := build(packit.BuildContext{
+					BuildpackInfo: packit.BuildpackInfo{SBOMFormats: []string{"random-format"}},
+					CNBPath:       cnbDir,
+					Plan: packit.BuildpackPlan{
+						Entries: []packit.BuildpackPlanEntry{
+							{
+								Name: "dotnet-core-runtime",
+								Metadata: map[string]interface{}{
+									"version-source": "BP_DOTNET_FRAMEWORK_VERSION",
+									"version":        "2.5.x",
+								},
+							},
+						},
+					},
+					Layers: packit.Layers{Path: layersDir},
+				})
+				Expect(err).To(MatchError("unsupported SBOM format: 'random-format'"))
+			})
 		})
 	})
 }

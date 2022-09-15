@@ -11,7 +11,7 @@ import (
 	"github.com/sclevine/spec"
 
 	. "github.com/onsi/gomega"
-	// . "github.com/paketo-buildpacks/occam/matchers"
+	. "github.com/paketo-buildpacks/occam/matchers"
 )
 
 func testDefault(t *testing.T, context spec.G, it spec.S) {
@@ -51,7 +51,7 @@ func testDefault(t *testing.T, context spec.G, it spec.S) {
 
 		it.After(func() {
 			Expect(docker.Container.Remove.Execute(container.ID)).To(Succeed())
-			// Expect(docker.Image.Remove.Execute(image.ID)).To(Succeed())
+			Expect(docker.Image.Remove.Execute(image.ID)).To(Succeed())
 			Expect(docker.Volume.Remove.Execute(occam.CacheVolumeNames(name))).To(Succeed())
 
 			Expect(os.RemoveAll(source)).To(Succeed())
@@ -73,24 +73,24 @@ func testDefault(t *testing.T, context spec.G, it spec.S) {
 				Execute(name, source)
 			Expect(err).NotTo(HaveOccurred(), logs.String())
 
-			// Expect(logs).To(ContainLines(
-			// 	MatchRegexp(fmt.Sprintf(`%s \d+\.\d+\.\d+`, settings.BuildpackInfo.Buildpack.Name)),
-			// 	"  Resolving .NET Core Runtime version",
-			// 	"    Candidate version sources (in priority order):",
-			// 	"      <unknown> -> \"\"",
-			// 	"",
-			// 	MatchRegexp(`    Selected .NET Core Runtime version \(using <unknown>\): 6\.0\.\d+`),
-			// 	"",
-			// 	"  Executing build process",
-			// 	MatchRegexp(`    Installing .NET Core Runtime 6\.0\.\d+`),
-			// 	MatchRegexp(`      Completed in ([0-9]*(\.[0-9]*)?[a-z]+)+`),
-			// 	"",
-			// 	"  Configuring build environment",
-			// 	MatchRegexp(`    RUNTIME_VERSION -> "\d+\.\d+\.\d+"`),
-			// 	"",
-			// 	"  Configuring launch environment",
-			// 	`    DOTNET_ROOT -> "/workspace/.dotnet_root"`,
-			// ))
+			Expect(logs).To(ContainLines(
+				MatchRegexp(fmt.Sprintf(`%s \d+\.\d+\.\d+`, buildpackInfo.Buildpack.Name)),
+				"  Resolving .NET Core ASP.NET Runtime version",
+				"    Candidate version sources (in priority order):",
+				`      runtimeconfig.json -> "6.0.0"`,
+				`      <unknown>          -> ""`,
+				"",
+				"    No exact version match found; attempting version roll-forward",
+				"",
+				MatchRegexp(`    Selected .NET Core ASP.NET Runtime version \(using runtimeconfig.json\): 6\.0\.\d+`),
+				"",
+				"  Executing build process",
+				MatchRegexp(`    Installing .NET Core ASP.NET Runtime 6\.0\.\d+`),
+				MatchRegexp(`      Completed in ([0-9]*(\.[0-9]*)?[a-z]+)+`),
+				"",
+				"  Configuring launch environment",
+				fmt.Sprintf(`    PATH -> "/layers/%s/dotnet-core-aspnet-runtime:$PATH"`, strings.ReplaceAll(buildpackInfo.Buildpack.ID, "/", "_")),
+			))
 
 			container, err = docker.Container.Run.
 				WithCommand("dotnet --info").
