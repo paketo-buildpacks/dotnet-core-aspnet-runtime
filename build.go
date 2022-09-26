@@ -82,12 +82,12 @@ func Build(
 			}, context.Plan.Entries...)
 		}
 
-		logger.Process("Resolving .NET Core ASP.NET Runtime version")
+		logger.Process("Resolving ASP.NET Core Runtime version")
 
 		priorities := []interface{}{
 			"BP_DOTNET_FRAMEWORK_VERSION",
-			regexp.MustCompile(`.*\.(cs)|(fs)|(vb)proj`),
 			"runtimeconfig.json",
+			regexp.MustCompile(`.*\.(cs)|(fs)|(vb)proj`),
 		}
 		entry, sortedEntries := entries.Resolve("dotnet-core-aspnet-runtime", context.Plan.Entries, priorities)
 		logger.Candidates(sortedEntries)
@@ -141,7 +141,7 @@ func Build(
 
 		dotnetCoreAspnetRuntimeLayer.Launch, dotnetCoreAspnetRuntimeLayer.Build, dotnetCoreAspnetRuntimeLayer.Cache = launch, build, build
 
-		logger.Subprocess("Installing .NET Core ASP.NET Runtime %s", dependency.Version)
+		logger.Subprocess("Installing ASP.NET Core Runtime %s", dependency.Version)
 		duration, err := clock.Measure(func() error {
 			return dependencies.Deliver(dependency, context.CNBPath, dotnetCoreAspnetRuntimeLayer.Path, context.Platform.Path)
 		})

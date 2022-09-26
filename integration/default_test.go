@@ -75,17 +75,17 @@ func testDefault(t *testing.T, context spec.G, it spec.S) {
 
 			Expect(logs).To(ContainLines(
 				MatchRegexp(fmt.Sprintf(`%s \d+\.\d+\.\d+`, buildpackInfo.Buildpack.Name)),
-				"  Resolving .NET Core ASP.NET Runtime version",
+				"  Resolving ASP.NET Core Runtime version",
 				"    Candidate version sources (in priority order):",
 				`      runtimeconfig.json -> "6.0.0"`,
 				`      <unknown>          -> ""`,
 				"",
 				"    No exact version match found; attempting version roll-forward",
 				"",
-				MatchRegexp(`    Selected .NET Core ASP.NET Runtime version \(using runtimeconfig.json\): 6\.0\.\d+`),
+				MatchRegexp(`    Selected ASP.NET Core Runtime version \(using runtimeconfig.json\): 6\.0\.\d+`),
 				"",
 				"  Executing build process",
-				MatchRegexp(`    Installing .NET Core ASP.NET Runtime 6\.0\.\d+`),
+				MatchRegexp(`    Installing ASP.NET Core Runtime 6\.0\.\d+`),
 				MatchRegexp(`      Completed in ([0-9]*(\.[0-9]*)?[a-z]+)+`),
 				"",
 				"  Configuring launch environment",
@@ -106,7 +106,7 @@ func testDefault(t *testing.T, context spec.G, it spec.S) {
 			// check an SBOM file
 			contents, err := os.ReadFile(filepath.Join(sbomDir, "sbom", "launch", "sbom.legacy.json"))
 			Expect(err).NotTo(HaveOccurred())
-			Expect(string(contents)).To(ContainSubstring(`"name":".NET Core ASP.NET Runtime"`))
+			Expect(string(contents)).To(ContainSubstring(`"name":"ASP.NET Core Runtime"`))
 
 			// check that all required SBOM files are present
 			Expect(filepath.Join(sbomDir, "sbom", "launch", strings.ReplaceAll(buildpackInfo.Buildpack.ID, "/", "_"), "dotnet-core-aspnet-runtime", "sbom.cdx.json")).To(BeARegularFile())
@@ -116,7 +116,7 @@ func testDefault(t *testing.T, context spec.G, it spec.S) {
 			// check an SBOM file
 			contents, err = os.ReadFile(filepath.Join(sbomDir, "sbom", "launch", strings.ReplaceAll(buildpackInfo.Buildpack.ID, "/", "_"), "dotnet-core-aspnet-runtime", "sbom.cdx.json"))
 			Expect(err).NotTo(HaveOccurred())
-			Expect(string(contents)).To(ContainSubstring(`"name": ".NET Core ASP.NET Runtime"`))
+			Expect(string(contents)).To(ContainSubstring(`"name": "ASP.NET Core Runtime"`))
 		})
 	})
 }

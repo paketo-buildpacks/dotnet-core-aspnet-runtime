@@ -98,14 +98,14 @@ func testLayerReuse(t *testing.T, context spec.G, it spec.S) {
 			Expect(secondImage.Buildpacks[0].Layers).To(HaveKey("dotnet-core-aspnet-runtime"))
 
 			Expect(logs).To(ContainLines(
-				"  Resolving .NET Core ASP.NET Runtime version",
+				"  Resolving ASP.NET Core Runtime version",
 				"    Candidate version sources (in priority order):",
 				`      runtimeconfig.json -> "6.0.0"`,
 				`      <unknown>          -> ""`,
 				"",
 				"    No exact version match found; attempting version roll-forward",
 				"",
-				MatchRegexp(`    Selected .NET Core ASP.NET Runtime version \(using runtimeconfig.json\): 6\.0\.\d+`),
+				MatchRegexp(`    Selected ASP.NET Core Runtime version \(using runtimeconfig.json\): 6\.0\.\d+`),
 				"",
 				MatchRegexp(fmt.Sprintf("  Reusing cached layer /layers/%s/dotnet-core-aspnet-runtime", strings.ReplaceAll(buildpackInfo.Buildpack.ID, "/", "_"))),
 				"",
@@ -201,13 +201,13 @@ func testLayerReuse(t *testing.T, context spec.G, it spec.S) {
 			Expect(secondImage.Buildpacks[0].Layers).To(HaveKey("dotnet-core-aspnet-runtime"))
 
 			Expect(logs).To(ContainLines(
-				"  Resolving .NET Core ASP.NET Runtime version",
+				"  Resolving ASP.NET Core Runtime version",
 				"    Candidate version sources (in priority order):",
 				`      BP_DOTNET_FRAMEWORK_VERSION -> "6.*"`,
 				`      runtimeconfig.json          -> "6.0.0"`,
 				`      <unknown>                   -> ""`,
 				"",
-				MatchRegexp(`    Selected .NET Core ASP.NET Runtime version \(using BP_DOTNET_FRAMEWORK_VERSION\): \d+\.\d+\.\d+`),
+				MatchRegexp(`    Selected ASP.NET Core Runtime version \(using BP_DOTNET_FRAMEWORK_VERSION\): \d+\.\d+\.\d+`),
 			))
 
 			Expect(logs).NotTo(ContainSubstring("Reusing cached layer"))
