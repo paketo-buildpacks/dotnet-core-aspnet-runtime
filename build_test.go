@@ -80,10 +80,10 @@ func testBuild(t *testing.T, context spec.G, it spec.S) {
 
 		versionResolver = &fakes.VersionResolver{}
 		versionResolver.ResolveCall.Returns.Dependency = postal.Dependency{
-			ID:      "dotnet-core-aspnet-runtime",
-			Version: "2.5.x",
-			Name:    ".NET Core ASP.NET Runtime",
-			SHA256:  "some-sha",
+			ID:       "dotnet-core-aspnet-runtime",
+			Version:  "2.5.x",
+			Name:     ".NET Core ASP.NET Runtime",
+			Checksum: "sha512:some-sha",
 		}
 
 		sbomGenerator = &fakes.SBOMGenerator{}
@@ -141,7 +141,7 @@ func testBuild(t *testing.T, context spec.G, it spec.S) {
 			"PATH.delim":   ":",
 		}))
 		Expect(layer.Metadata).To(Equal(map[string]interface{}{
-			"dependency-sha": "some-sha",
+			"dependency-sha": "sha512:some-sha",
 		}))
 
 		Expect(layer.Build).To(BeFalse())
@@ -193,10 +193,10 @@ func testBuild(t *testing.T, context spec.G, it spec.S) {
 
 		Expect(dependencyManager.GenerateBillOfMaterialsCall.Receives.Dependencies).To(Equal([]postal.Dependency{
 			{
-				ID:      "dotnet-core-aspnet-runtime",
-				Version: "2.5.x",
-				Name:    ".NET Core ASP.NET Runtime",
-				SHA256:  "some-sha",
+				ID:       "dotnet-core-aspnet-runtime",
+				Version:  "2.5.x",
+				Name:     ".NET Core ASP.NET Runtime",
+				Checksum: "sha512:some-sha",
 			},
 		}))
 
@@ -205,20 +205,20 @@ func testBuild(t *testing.T, context spec.G, it spec.S) {
 		Expect(versionResolver.ResolveCall.Receives.Stack).To(Equal("some-stack"))
 
 		Expect(dependencyManager.DeliverCall.Receives.Dependency).To(Equal(postal.Dependency{
-			ID:      "dotnet-core-aspnet-runtime",
-			Version: "2.5.x",
-			Name:    ".NET Core ASP.NET Runtime",
-			SHA256:  "some-sha",
+			ID:       "dotnet-core-aspnet-runtime",
+			Version:  "2.5.x",
+			Name:     ".NET Core ASP.NET Runtime",
+			Checksum: "sha512:some-sha",
 		}))
 		Expect(dependencyManager.DeliverCall.Receives.CnbPath).To(Equal(cnbDir))
 		Expect(dependencyManager.DeliverCall.Receives.LayerPath).To(Equal(filepath.Join(layersDir, "dotnet-core-aspnet-runtime")))
 		Expect(dependencyManager.DeliverCall.Receives.PlatformPath).To(Equal("platform"))
 
 		Expect(sbomGenerator.GenerateFromDependencyCall.Receives.Dependency).To(Equal(postal.Dependency{
-			ID:      "dotnet-core-aspnet-runtime",
-			Version: "2.5.x",
-			Name:    ".NET Core ASP.NET Runtime",
-			SHA256:  "some-sha",
+			ID:       "dotnet-core-aspnet-runtime",
+			Version:  "2.5.x",
+			Name:     ".NET Core ASP.NET Runtime",
+			Checksum: "sha512:some-sha",
 		}))
 		Expect(sbomGenerator.GenerateFromDependencyCall.Receives.Dir).To(Equal(filepath.Join(layersDir, "dotnet-core-aspnet-runtime")))
 	})
@@ -228,7 +228,7 @@ func testBuild(t *testing.T, context spec.G, it spec.S) {
 			entryResolver.MergeLayerTypesCall.Returns.Build = true
 			entryResolver.MergeLayerTypesCall.Returns.Launch = false
 
-			err := os.WriteFile(filepath.Join(layersDir, "dotnet-core-aspnet-runtime.toml"), []byte("[metadata]\ndependency-sha = \"some-sha\"\n"), 0600)
+			err := os.WriteFile(filepath.Join(layersDir, "dotnet-core-aspnet-runtime.toml"), []byte("[metadata]\ndependency-sha = \"sha512:some-sha\"\n"), 0600)
 			Expect(err).NotTo(HaveOccurred())
 		})
 
@@ -279,10 +279,10 @@ func testBuild(t *testing.T, context spec.G, it spec.S) {
 
 			Expect(dependencyManager.GenerateBillOfMaterialsCall.Receives.Dependencies).To(Equal([]postal.Dependency{
 				{
-					ID:      "dotnet-core-aspnet-runtime",
-					Version: "2.5.x",
-					Name:    ".NET Core ASP.NET Runtime",
-					SHA256:  "some-sha",
+					ID:       "dotnet-core-aspnet-runtime",
+					Version:  "2.5.x",
+					Name:     ".NET Core ASP.NET Runtime",
+					Checksum: "sha512:some-sha",
 				},
 			}))
 

@@ -118,7 +118,7 @@ func Build(
 		}
 
 		cachedDependencySHA, ok := dotnetCoreAspnetRuntimeLayer.Metadata["dependency-sha"]
-		if ok && cachedDependencySHA == dependency.SHA256 {
+		if ok && cachedDependencySHA == dependency.Checksum {
 			logger.Process(fmt.Sprintf("Reusing cached layer %s", dotnetCoreAspnetRuntimeLayer.Path))
 			logger.Break()
 
@@ -153,7 +153,7 @@ func Build(
 		logger.Break()
 
 		dotnetCoreAspnetRuntimeLayer.Metadata = map[string]interface{}{
-			"dependency-sha": dependency.SHA256,
+			"dependency-sha": dependency.Checksum,
 		}
 
 		dotnetCoreAspnetRuntimeLayer.LaunchEnv.Prepend(
