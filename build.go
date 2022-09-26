@@ -59,7 +59,7 @@ func Build(
 		frameworkVersion, err := configParser.Parse(filepath.Join(context.WorkingDir, "*.runtimeconfig.json"))
 		if err != nil {
 			if errors.Is(err, os.ErrNotExist) {
-				logger.Process("Skipping build process as there was no runtimeconfig.json found")
+				logger.Process("Skipping build process. No runtimeconfig.json found.")
 				logger.Break()
 				return packit.BuildResult{}, nil
 			}
@@ -67,7 +67,7 @@ func Build(
 		}
 
 		if frameworkVersion == "" {
-			logger.Process("Skipping build process as there were no frameworks specified in the runtimeconfig.json")
+			logger.Process("Skipping build process. No required runtime frameworks listed in runtimeconfig.json. App is self-contained.")
 			logger.Break()
 			return packit.BuildResult{}, nil
 		} else {

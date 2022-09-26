@@ -77,8 +77,9 @@ func testLayerReuse(t *testing.T, context spec.G, it spec.S) {
 			imageIDs[firstImage.ID] = struct{}{}
 
 			Expect(firstImage.Buildpacks).To(HaveLen(2))
-			Expect(firstImage.Buildpacks[0].Key).To(Equal(buildpackInfo.Buildpack.ID))
-			Expect(firstImage.Buildpacks[0].Layers).To(HaveKey("dotnet-core-aspnet-runtime"))
+			firstImageBuildpackMetadata, err := firstImage.BuildpackForKey(buildpackInfo.Buildpack.ID)
+			Expect(err).NotTo(HaveOccurred())
+			Expect(firstImageBuildpackMetadata.Layers).To(HaveKey("dotnet-core-aspnet-runtime"))
 
 			// second pack build
 
@@ -94,7 +95,8 @@ func testLayerReuse(t *testing.T, context spec.G, it spec.S) {
 			imageIDs[secondImage.ID] = struct{}{}
 
 			Expect(secondImage.Buildpacks).To(HaveLen(2))
-			Expect(secondImage.Buildpacks[0].Key).To(Equal(buildpackInfo.Buildpack.ID))
+			secondImageBuildpackMetadata, err := secondImage.BuildpackForKey(buildpackInfo.Buildpack.ID)
+			Expect(err).NotTo(HaveOccurred())
 			Expect(secondImage.Buildpacks[0].Layers).To(HaveKey("dotnet-core-aspnet-runtime"))
 
 			Expect(logs).To(ContainLines(
@@ -124,7 +126,7 @@ func testLayerReuse(t *testing.T, context spec.G, it spec.S) {
 				return cLogs.String()
 			}).Should(ContainSubstring(".NET runtimes installed"))
 
-			Expect(secondImage.Buildpacks[0].Layers["dotnet-core-aspnet-runtime"].SHA).To(Equal(firstImage.Buildpacks[0].Layers["dotnet-core-aspnet-runtime"].SHA))
+			Expect(secondImageBuildpackMetadata.Layers["dotnet-core-aspnet-runtime"].SHA).To(Equal(firstImageBuildpackMetadata.Layers["dotnet-core-aspnet-runtime"].SHA))
 		})
 	})
 
@@ -177,8 +179,9 @@ func testLayerReuse(t *testing.T, context spec.G, it spec.S) {
 			imageIDs[firstImage.ID] = struct{}{}
 
 			Expect(firstImage.Buildpacks).To(HaveLen(2))
-			Expect(firstImage.Buildpacks[0].Key).To(Equal(buildpackInfo.Buildpack.ID))
-			Expect(firstImage.Buildpacks[0].Layers).To(HaveKey("dotnet-core-aspnet-runtime"))
+			firstImageBuildpackMetadata, err := firstImage.BuildpackForKey(buildpackInfo.Buildpack.ID)
+			Expect(err).NotTo(HaveOccurred())
+			Expect(firstImageBuildpackMetadata.Layers).To(HaveKey("dotnet-core-aspnet-runtime"))
 
 			// second pack build
 
@@ -197,7 +200,8 @@ func testLayerReuse(t *testing.T, context spec.G, it spec.S) {
 			imageIDs[secondImage.ID] = struct{}{}
 
 			Expect(secondImage.Buildpacks).To(HaveLen(2))
-			Expect(secondImage.Buildpacks[0].Key).To(Equal(buildpackInfo.Buildpack.ID))
+			secondImageBuildpackMetadata, err := secondImage.BuildpackForKey(buildpackInfo.Buildpack.ID)
+			Expect(err).NotTo(HaveOccurred())
 			Expect(secondImage.Buildpacks[0].Layers).To(HaveKey("dotnet-core-aspnet-runtime"))
 
 			Expect(logs).To(ContainLines(
@@ -225,7 +229,7 @@ func testLayerReuse(t *testing.T, context spec.G, it spec.S) {
 				return cLogs.String()
 			}).Should(ContainSubstring(".NET runtimes installed"))
 
-			Expect(secondImage.Buildpacks[0].Layers["dotnet-core-aspnet-runtime"].SHA).NotTo(Equal(firstImage.Buildpacks[0].Layers["dotnet-core-aspnet-runtime"].SHA))
+			Expect(secondImageBuildpackMetadata.Layers["dotnet-core-aspnet-runtime"].SHA).NotTo(Equal(firstImageBuildpackMetadata.Layers["dotnet-core-aspnet-runtime"].SHA))
 		})
 	})
 }

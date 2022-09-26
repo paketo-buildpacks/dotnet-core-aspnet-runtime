@@ -74,7 +74,7 @@ func testRuntimeconfigNoop(t *testing.T, context spec.G, it spec.S) {
 
 			Expect(logs).To(ContainLines(
 				MatchRegexp(fmt.Sprintf(`%s \d+\.\d+\.\d+`, buildpackInfo.Buildpack.Name)),
-				"  Skipping build process as there were no frameworks specified in the runtimeconfig.json",
+				"  Skipping build process. No required runtime frameworks listed in runtimeconfig.json. App is self-contained.",
 				"",
 			))
 		})
@@ -120,7 +120,7 @@ func testRuntimeconfigNoop(t *testing.T, context spec.G, it spec.S) {
 
 			Expect(logs).To(ContainLines(
 				MatchRegexp(fmt.Sprintf(`%s \d+\.\d+\.\d+`, buildpackInfo.Buildpack.Name)),
-				"  Skipping build process as there was no runtimeconfig.json found",
+				"  Skipping build process. No runtimeconfig.json found.",
 				"",
 			))
 		})
