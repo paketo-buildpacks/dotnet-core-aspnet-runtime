@@ -89,7 +89,8 @@ func testDefault(t *testing.T, context spec.G, it spec.S) {
 				MatchRegexp(`      Completed in ([0-9]*(\.[0-9]*)?[a-z]+)+`),
 				"",
 				"  Configuring launch environment",
-				fmt.Sprintf(`    PATH -> "/layers/%s/dotnet-core-aspnet-runtime:$PATH"`, strings.ReplaceAll(buildpackInfo.Buildpack.ID, "/", "_")),
+				fmt.Sprintf(`    DOTNET_ROOT -> "/layers/%s/dotnet-core-aspnet-runtime"`, strings.ReplaceAll(buildpackInfo.Buildpack.ID, "/", "_")),
+				fmt.Sprintf(`    PATH        -> "/layers/%s/dotnet-core-aspnet-runtime:$PATH"`, strings.ReplaceAll(buildpackInfo.Buildpack.ID, "/", "_")),
 			))
 
 			container, err = docker.Container.Run.

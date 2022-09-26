@@ -162,6 +162,11 @@ func Build(
 			string(os.PathListSeparator),
 		)
 
+		dotnetCoreAspnetRuntimeLayer.LaunchEnv.Default(
+			"DOTNET_ROOT",
+			dotnetCoreAspnetRuntimeLayer.Path,
+		)
+
 		logger.EnvironmentVariables(dotnetCoreAspnetRuntimeLayer)
 
 		logger.GeneratingSBOM(dotnetCoreAspnetRuntimeLayer.Path)

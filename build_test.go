@@ -137,8 +137,9 @@ func testBuild(t *testing.T, context spec.G, it spec.S) {
 		Expect(layer.Name).To(Equal("dotnet-core-aspnet-runtime"))
 		Expect(layer.Path).To(Equal(filepath.Join(layersDir, "dotnet-core-aspnet-runtime")))
 		Expect(layer.LaunchEnv).To(Equal(packit.Environment{
-			"PATH.prepend": filepath.Join(layersDir, "dotnet-core-aspnet-runtime"),
-			"PATH.delim":   ":",
+			"PATH.prepend":        filepath.Join(layersDir, "dotnet-core-aspnet-runtime"),
+			"PATH.delim":          ":",
+			"DOTNET_ROOT.default": filepath.Join(layersDir, "dotnet-core-aspnet-runtime"),
 		}))
 		Expect(layer.Metadata).To(Equal(map[string]interface{}{
 			"dependency-sha": "sha512:some-sha",
