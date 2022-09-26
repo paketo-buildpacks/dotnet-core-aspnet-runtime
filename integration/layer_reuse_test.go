@@ -97,7 +97,7 @@ func testLayerReuse(t *testing.T, context spec.G, it spec.S) {
 			Expect(secondImage.Buildpacks).To(HaveLen(2))
 			secondImageBuildpackMetadata, err := secondImage.BuildpackForKey(buildpackInfo.Buildpack.ID)
 			Expect(err).NotTo(HaveOccurred())
-			Expect(secondImage.Buildpacks[0].Layers).To(HaveKey("dotnet-core-aspnet-runtime"))
+			Expect(secondImageBuildpackMetadata.Layers).To(HaveKey("dotnet-core-aspnet-runtime"))
 
 			Expect(logs).To(ContainLines(
 				"  Resolving ASP.NET Core Runtime version",
@@ -202,7 +202,7 @@ func testLayerReuse(t *testing.T, context spec.G, it spec.S) {
 			Expect(secondImage.Buildpacks).To(HaveLen(2))
 			secondImageBuildpackMetadata, err := secondImage.BuildpackForKey(buildpackInfo.Buildpack.ID)
 			Expect(err).NotTo(HaveOccurred())
-			Expect(secondImage.Buildpacks[0].Layers).To(HaveKey("dotnet-core-aspnet-runtime"))
+			Expect(secondImageBuildpackMetadata.Layers).To(HaveKey("dotnet-core-aspnet-runtime"))
 
 			Expect(logs).To(ContainLines(
 				"  Resolving ASP.NET Core Runtime version",
