@@ -1,0 +1,88 @@
+api = "0.8"
+
+[buildpack]
+  id = "paketo-buildpacks/dotnet-core-aspnet-runtime"
+  homepage = "https://github.com/paketo-buildpacks/dotnet-core-aspnet-runtime"
+  keywords = ["dotnet", "ASP.NET", "runtime"]
+  name = "Paketo Buildpack for ASP.NET Core Runtime"
+  sbom-formats = ["application/vnd.cyclonedx+json", "application/spdx+json", "application/vnd.syft+json"]
+
+  [[buildpack.licenses]]
+    type = "Apache-2.0"
+    uri = "https://github.com/paketo-buildpacks/dotnet-core-aspnet-runtime/blob/main/LICENSE"
+
+[metadata]
+  include-files = ["bin/run","bin/build","bin/detect","buildpack.toml"]
+  pre-package = "./scripts/build.sh"
+
+  [[metadata.dependencies]]
+    cpe = "cpe:2.3:a:microsoft:asp.net_core:3.1:*:*:*:*:*:*:*"
+    deprecation_date = "2024-11-08T00:00:00Z"
+    id = "dotnet-core-aspnet-runtime"
+    name = "ASP.NET Core Runtime"
+    licenses = ["MIT", "MIT-0"]
+    purl = "pkg:generic/dotnet-aspnetcore@3.1.28?checksum=fd66f9c0d0e9ed57abe5f81650c2ff49c694e05927e5280dbbdee1a9eb4299f0710bdc06ae0af0737c0a0584970b24d3eb952434b45ad8984fe3e37ca95cc1b1&download_url=https://download.visualstudio.microsoft.com/download/pr/effaa5bf-0fa7-4e5a-9ce8-9ac04ee86669/5afb2b1c2ad68550cec914d8fb303d20/aspnetcore-runtime-3.1.28-linux-x64.tar.gz"
+    checksum = "sha512:fd66f9c0d0e9ed57abe5f81650c2ff49c694e05927e5280dbbdee1a9eb4299f0710bdc06ae0af0737c0a0584970b24d3eb952434b45ad8984fe3e37ca95cc1b1"
+    source = "https://download.visualstudio.microsoft.com/download/pr/effaa5bf-0fa7-4e5a-9ce8-9ac04ee86669/5afb2b1c2ad68550cec914d8fb303d20/aspnetcore-runtime-3.1.28-linux-x64.tar.gz"
+    source-checksum = "sha512:fd66f9c0d0e9ed57abe5f81650c2ff49c694e05927e5280dbbdee1a9eb4299f0710bdc06ae0af0737c0a0584970b24d3eb952434b45ad8984fe3e37ca95cc1b1"
+    stacks = ["io.buildpacks.stacks.bionic"]
+    uri = "https://download.visualstudio.microsoft.com/download/pr/effaa5bf-0fa7-4e5a-9ce8-9ac04ee86669/5afb2b1c2ad68550cec914d8fb303d20/aspnetcore-runtime-3.1.28-linux-x64.tar.gz"
+    version = "3.1.28"
+
+  [[metadata.dependencies]]
+    cpe = "cpe:2.3:a:microsoft:asp.net_core:3.1:*:*:*:*:*:*:*"
+    deprecation_date = "2024-11-08T00:00:00Z"
+    id = "dotnet-core-aspnet-runtime"
+    name = "ASP.NET Core Runtime"
+    licenses = ["MIT", "MIT-0"]
+    purl = "pkg:generic/dotnet-aspnetcore@3.1.29?checksum=991918a89c1372d8d1eef967777cc9dd55d0cef827d940f068e701ca877dd6e14045c3a309e6e9c4a7f843eef6d1b192b9ae1257141947f999f4e8dd6b0d43e3&download_url=https://download.visualstudio.microsoft.com/download/pr/d35c543b-44be-46ab-abf0-de8af9c5b3cb/4a17a6aaabe3f2f0e49de31f2f809713/aspnetcore-runtime-3.1.29-linux-x64.tar.gz"
+    checksum = "sha512:991918a89c1372d8d1eef967777cc9dd55d0cef827d940f068e701ca877dd6e14045c3a309e6e9c4a7f843eef6d1b192b9ae1257141947f999f4e8dd6b0d43e3"
+    source = "https://download.visualstudio.microsoft.com/download/pr/d35c543b-44be-46ab-abf0-de8af9c5b3cb/4a17a6aaabe3f2f0e49de31f2f809713/aspnetcore-runtime-3.1.29-linux-x64.tar.gz"
+    source-checksum = "sha512:991918a89c1372d8d1eef967777cc9dd55d0cef827d940f068e701ca877dd6e14045c3a309e6e9c4a7f843eef6d1b192b9ae1257141947f999f4e8dd6b0d43e3"
+    stacks = ["io.buildpacks.stacks.bionic"]
+    uri = "https://download.visualstudio.microsoft.com/download/pr/d35c543b-44be-46ab-abf0-de8af9c5b3cb/4a17a6aaabe3f2f0e49de31f2f809713/aspnetcore-runtime-3.1.29-linux-x64.tar.gz"
+    version = "3.1.29"
+
+  [[metadata.dependencies]]
+    cpe = "cpe:2.3:a:microsoft:asp.net_core:6.0:*:*:*:*:*:*:*"
+    deprecation_date = "2024-11-08T00:00:00Z"
+    id = "dotnet-core-aspnet-runtime"
+    name = "ASP.NET Core Runtime"
+    licenses = ["MIT", "MIT-0"]
+    purl = "pkg:generic/dotnet-aspnetcore@6.0.8?checksum=b74676ca0d2f47a95533739fd36977bb1552890a81820ee51b29b3d6514398f0952362417bbb31fad4bdf031803cb3e8d2aaf065dfb154a78a1b471a536d4abd&download_url=https://download.visualstudio.microsoft.com/download/pr/5cc06c3a-4d8a-4fb2-8f7a-ecd23cd8c4e0/dd386c0e3a41ea54f459907c834acedf/aspnetcore-runtime-6.0.8-linux-x64.tar.gz"
+    checksum = "sha512:b74676ca0d2f47a95533739fd36977bb1552890a81820ee51b29b3d6514398f0952362417bbb31fad4bdf031803cb3e8d2aaf065dfb154a78a1b471a536d4abd"
+    source = "https://download.visualstudio.microsoft.com/download/pr/5cc06c3a-4d8a-4fb2-8f7a-ecd23cd8c4e0/dd386c0e3a41ea54f459907c834acedf/aspnetcore-runtime-6.0.8-linux-x64.tar.gz"
+    source-checksum = "sha512:b74676ca0d2f47a95533739fd36977bb1552890a81820ee51b29b3d6514398f0952362417bbb31fad4bdf031803cb3e8d2aaf065dfb154a78a1b471a536d4abd"
+    stacks = ["io.buildpacks.stacks.bionic", "io.buildpacks.stacks.jammy"]
+    uri = "https://download.visualstudio.microsoft.com/download/pr/5cc06c3a-4d8a-4fb2-8f7a-ecd23cd8c4e0/dd386c0e3a41ea54f459907c834acedf/aspnetcore-runtime-6.0.8-linux-x64.tar.gz"
+    version = "6.0.8"
+
+  [[metadata.dependencies]]
+    cpe = "cpe:2.3:a:microsoft:asp.net_core:6.0:*:*:*:*:*:*:*"
+    deprecation_date = "2024-11-08T00:00:00Z"
+    id = "dotnet-core-aspnet-runtime"
+    name = "ASP.NET Core Runtime"
+    licenses = ["MIT", "MIT-0"]
+    purl = "pkg:generic/dotnet-aspnetcore@6.0.9?checksum=e808036155bc324335c309aaf948b2be1940a62eaf0135752989644698653c8f3a5ce310c3ee6742e3af73dbe175c6e529298eedf6eeb31cc38bfeab628f6d7b&download_url=https://download.visualstudio.microsoft.com/download/pr/1a2bca2e-f525-4ecf-9c46-06889b4ce3a4/1a7ad60df284ca6b00ca5d31cc1b1c7c/aspnetcore-runtime-6.0.9-linux-x64.tar.gz"
+    checksum = "sha512:e808036155bc324335c309aaf948b2be1940a62eaf0135752989644698653c8f3a5ce310c3ee6742e3af73dbe175c6e529298eedf6eeb31cc38bfeab628f6d7b"
+    source = "https://download.visualstudio.microsoft.com/download/pr/1a2bca2e-f525-4ecf-9c46-06889b4ce3a4/1a7ad60df284ca6b00ca5d31cc1b1c7c/aspnetcore-runtime-6.0.9-linux-x64.tar.gz"
+    source-checksum = "sha512:e808036155bc324335c309aaf948b2be1940a62eaf0135752989644698653c8f3a5ce310c3ee6742e3af73dbe175c6e529298eedf6eeb31cc38bfeab628f6d7b"
+    stacks = ["io.buildpacks.stacks.bionic", "io.buildpacks.stacks.jammy"]
+    uri = "https://download.visualstudio.microsoft.com/download/pr/1a2bca2e-f525-4ecf-9c46-06889b4ce3a4/1a7ad60df284ca6b00ca5d31cc1b1c7c/aspnetcore-runtime-6.0.9-linux-x64.tar.gz"
+    version = "6.0.9"
+
+  [[metadata.dependency-constraints]]
+    constraint = "3.1.*"
+    id = "dotnet-core-aspnet-runtime"
+    patches = 2
+
+  [[metadata.dependency-constraints]]
+    constraint = "6.0.*"
+    id = "dotnet-core-aspnet-runtime"
+    patches = 2
+
+[[stacks]]
+  id = "io.buildpacks.stacks.bionic"
+
+[[stacks]]
+  id = "io.buildpacks.stacks.jammy"
