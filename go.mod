@@ -9,7 +9,7 @@ require (
 	github.com/gravityblast/go-jsmin v0.0.0-20141027113318-a32d741b3595
 	github.com/onsi/gomega v1.20.2
 	github.com/paketo-buildpacks/occam v0.13.2
-	github.com/paketo-buildpacks/packit/v2 v2.5.1
+	github.com/paketo-buildpacks/packit/v2 v2.6.0
 	github.com/sclevine/spec v1.4.0
 )
 
