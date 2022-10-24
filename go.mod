@@ -3,9 +3,12 @@ module github.com/paketo-buildpacks/dotnet-core-aspnet-runtime
 go 1.18
 
 require (
-	github.com/BurntSushi/toml v1.2.0
+	github.com/BurntSushi/toml v1.2.1
 	github.com/Masterminds/semver v1.5.0
+	github.com/Masterminds/semver/v3 v3.1.1
 	github.com/Netflix/go-env v0.0.0-20220526054621-78278af1949d
+	github.com/anchore/packageurl-go v0.1.1-0.20220428202044-a072fa3cb6d7
+	github.com/go-enry/go-license-detector/v4 v4.3.0
 	github.com/gravityblast/go-jsmin v0.0.0-20141027113318-a32d741b3595
 	github.com/onsi/gomega v1.22.1
 	github.com/paketo-buildpacks/occam v0.13.3
@@ -19,14 +22,12 @@ require (
 	github.com/DataDog/zstd v1.5.2 // indirect
 	github.com/ForestEckhardt/freezer v0.0.12 // indirect
 	github.com/Masterminds/goutils v1.1.1 // indirect
-	github.com/Masterminds/semver/v3 v3.1.1 // indirect
 	github.com/Masterminds/sprig/v3 v3.2.2 // indirect
 	github.com/Microsoft/go-winio v0.6.0 // indirect
 	github.com/Microsoft/hcsshim v0.9.4 // indirect
 	github.com/acobaugh/osrelease v0.1.0 // indirect
 	github.com/anchore/go-macholibre v0.0.0-20220308212642-53e6d0aaf6fb // indirect
 	github.com/anchore/go-version v1.2.2-0.20200701162849-18adb9c92b9b // indirect
-	github.com/anchore/packageurl-go v0.1.1-0.20220428202044-a072fa3cb6d7 // indirect
 	github.com/anchore/stereoscope v0.0.0-20221006201143-d24c9d626b33 // indirect
 	github.com/anchore/syft v0.58.0 // indirect
 	github.com/andybalholm/brotli v1.0.4 // indirect
@@ -48,7 +49,6 @@ require (
 	github.com/emirpasic/gods v1.12.0 // indirect
 	github.com/facebookincubator/nvdtools v0.1.5 // indirect
 	github.com/gabriel-vasile/mimetype v1.4.1 // indirect
-	github.com/go-enry/go-license-detector/v4 v4.3.0 // indirect
 	github.com/go-git/gcfg v1.5.0 // indirect
 	github.com/go-git/go-billy/v5 v5.0.0 // indirect
 	github.com/go-git/go-git/v5 v5.1.0 // indirect
