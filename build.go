@@ -9,6 +9,7 @@ import (
 	"time"
 
 	"github.com/paketo-buildpacks/packit/v2"
+	"github.com/paketo-buildpacks/packit/v2/cargo"
 	"github.com/paketo-buildpacks/packit/v2/chronos"
 	"github.com/paketo-buildpacks/packit/v2/postal"
 	"github.com/paketo-buildpacks/packit/v2/sbom"
@@ -117,8 +118,8 @@ func Build(
 			launchMetadata.BOM = bom
 		}
 
-		cachedDependencySHA, ok := dotnetCoreAspnetRuntimeLayer.Metadata["dependency-sha"]
-		if ok && cachedDependencySHA == dependency.Checksum {
+		cachedChecksum, ok := dotnetCoreAspnetRuntimeLayer.Metadata["dependency-checksum"].(string)
+		if ok && cargo.Checksum(dependency.Checksum).MatchString(cachedChecksum) {
 			logger.Process(fmt.Sprintf("Reusing cached layer %s", dotnetCoreAspnetRuntimeLayer.Path))
 			logger.Break()
 
@@ -153,7 +154,7 @@ func Build(
 		logger.Break()
 
 		dotnetCoreAspnetRuntimeLayer.Metadata = map[string]interface{}{
-			"dependency-sha": dependency.Checksum,
+			"dependency-checksum": dependency.Checksum,
 		}
 
 		dotnetCoreAspnetRuntimeLayer.LaunchEnv.Prepend(

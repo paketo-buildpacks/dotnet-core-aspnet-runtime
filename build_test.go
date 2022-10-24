@@ -142,7 +142,7 @@ func testBuild(t *testing.T, context spec.G, it spec.S) {
 			"DOTNET_ROOT.default": filepath.Join(layersDir, "dotnet-core-aspnet-runtime"),
 		}))
 		Expect(layer.Metadata).To(Equal(map[string]interface{}{
-			"dependency-sha": "sha512:some-sha",
+			"dependency-checksum": "sha512:some-sha",
 		}))
 
 		Expect(layer.Build).To(BeFalse())
@@ -229,7 +229,7 @@ func testBuild(t *testing.T, context spec.G, it spec.S) {
 			entryResolver.MergeLayerTypesCall.Returns.Build = true
 			entryResolver.MergeLayerTypesCall.Returns.Launch = false
 
-			err := os.WriteFile(filepath.Join(layersDir, "dotnet-core-aspnet-runtime.toml"), []byte("[metadata]\ndependency-sha = \"sha512:some-sha\"\n"), 0600)
+			err := os.WriteFile(filepath.Join(layersDir, "dotnet-core-aspnet-runtime.toml"), []byte("[metadata]\ndependency-checksum = \"sha512:some-sha\"\n"), 0600)
 			Expect(err).NotTo(HaveOccurred())
 		})
 
