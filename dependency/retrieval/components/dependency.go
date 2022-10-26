@@ -69,7 +69,7 @@ func ConvertReleaseToDependency(release Release) (cargo.ConfigMetadataDependency
 
 	return cargo.ConfigMetadataDependency{
 		ID:              "dotnet-core-aspnet-runtime",
-		Name:            ".NET Core ASP.NET Runtime",
+		Name:            "ASP.NET Core Runtime",
 		Version:         release.SemVer.String(),
 		Stacks:          stacks,
 		DeprecationDate: &depDate,
