@@ -15,7 +15,7 @@ require (
 	github.com/gravityblast/go-jsmin v0.0.0-20141027113318-a32d741b3595
 	github.com/onsi/gomega v1.24.0
 	github.com/paketo-buildpacks/occam v0.13.3
-	github.com/paketo-buildpacks/packit/v2 v2.6.1
+	github.com/paketo-buildpacks/packit/v2 v2.7.0
 	github.com/sclevine/spec v1.4.0
 )
 
@@ -37,7 +37,7 @@ require (
 	github.com/anchore/stereoscope v0.0.0-20221006201143-d24c9d626b33 // indirect
 	github.com/anchore/syft v0.60.3 // indirect
 	github.com/andybalholm/brotli v1.0.4 // indirect
-	github.com/bmatcuk/doublestar/v4 v4.3.0 // indirect
+	github.com/bmatcuk/doublestar/v4 v4.3.2 // indirect
 	github.com/cenkalti/backoff/v4 v4.1.3 // indirect
 	github.com/cloudflare/circl v1.2.0 // indirect
 	github.com/containerd/cgroups v1.0.4 // indirect
@@ -92,7 +92,7 @@ require (
 	github.com/mitchellh/reflectwalk v1.0.2 // indirect
 	github.com/moby/sys/mount v0.3.3 // indirect
 	github.com/moby/sys/mountinfo v0.6.2 // indirect
-	github.com/moby/term v0.0.0-20220808134915-39b0c02b01ae // indirect
+	github.com/moby/term v0.0.0-20221105221325-4eb28fa6025c // indirect
 	github.com/montanaflynn/stats v0.6.6 // indirect
 	github.com/morikuni/aec v1.0.0 // indirect
 	github.com/nwaples/rardecode v1.1.3 // indirect
@@ -131,7 +131,7 @@ require (
 	github.com/xi2/xz v0.0.0-20171230120015-48954b6210f8 // indirect
 	go.opencensus.io v0.24.0 // indirect
 	golang.org/x/crypto v0.1.0 // indirect
-	golang.org/x/exp v0.0.0-20221031165847-c99f073a8326 // indirect
+	golang.org/x/exp v0.0.0-20221106115401-f9659909a136 // indirect
 	golang.org/x/mod v0.6.0 // indirect
 	golang.org/x/net v0.1.0 // indirect
 	golang.org/x/sync v0.1.0 // indirect
@@ -154,7 +154,7 @@ require (
 	modernc.org/mathutil v1.5.0 // indirect
 	modernc.org/memory v1.4.0 // indirect
 	modernc.org/opt v0.1.3 // indirect
-	modernc.org/sqlite v1.19.3 // indirect
+	modernc.org/sqlite v1.19.4 // indirect
 	modernc.org/strutil v1.1.3 // indirect
 	modernc.org/token v1.0.1 // indirect
 )
