@@ -41,9 +41,12 @@ func main() {
 	runtimeVersionResolver := dotnetcoreaspnetruntime.NewRuntimeVersionResolver(logEmitter, environment)
 	runtimeConfigParser := dotnetcoreaspnetruntime.NewRuntimeConfigParser()
 
+	bpYMLParser := dotnetcoreaspnetruntime.NewBuildpackYMLParser()
+
 	packit.Run(
 		dotnetcoreaspnetruntime.Detect(
 			environment,
+			bpYMLParser,
 		),
 		dotnetcoreaspnetruntime.Build(
 			entryResolver,
