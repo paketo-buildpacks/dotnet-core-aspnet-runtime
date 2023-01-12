@@ -330,6 +330,76 @@ func testBuild(t *testing.T, context spec.G, it spec.S) {
 			Expect(configParser.ParseCall.Receives.RuntimeConfigFileGlob).To(Equal(filepath.Join(workingDir, "*.runtimeconfig.json")))
 		})
 	})
+
+	context("when the backwards compatible api is being used", func() {
+		it("returns a result that installs the dotnet aspnet runtime libraries and prints a warning", func() {
+			result, err := build(packit.BuildContext{
+				WorkingDir: workingDir,
+				CNBPath:    cnbDir,
+				Stack:      "some-stack",
+				BuildpackInfo: packit.BuildpackInfo{
+					Name:        "Some Buildpack",
+					Version:     "1.2.3",
+					SBOMFormats: []string{sbom.CycloneDXFormat, sbom.SPDXFormat},
+				},
+				Platform: packit.Platform{Path: "platform"},
+				Plan: packit.BuildpackPlan{
+					Entries: []packit.BuildpackPlanEntry{
+						{
+							Name: "dotnet-runtime",
+							Metadata: map[string]interface{}{
+								"version-source": "BP_DOTNET_FRAMEWORK_VERSION",
+								"version":        "2.5.x",
+								"launch":         true,
+							},
+						},
+						{
+							Name: "dotnet-aspnetcore",
+							Metadata: map[string]interface{}{
+								"launch": true,
+							},
+						},
+					},
+				},
+				Layers: packit.Layers{Path: layersDir},
+			})
+			Expect(err).NotTo(HaveOccurred())
+
+			Expect(result.Layers).To(HaveLen(1))
+			layer := result.Layers[0]
+
+			Expect(layer.Name).To(Equal("dotnet-core-aspnet-runtime"))
+			Expect(layer.Path).To(Equal(filepath.Join(layersDir, "dotnet-core-aspnet-runtime")))
+
+			Expect(entryResolver.ResolveCall.Receives.BuildpackPlanEntrySlice).To(Equal([]packit.BuildpackPlanEntry{
+				{
+					Name: "dotnet-core-aspnet-runtime",
+					Metadata: map[string]interface{}{
+						"version":        "some-version",
+						"version-source": "runtimeconfig.json",
+					},
+				},
+				{
+					Name: "dotnet-core-aspnet-runtime",
+					Metadata: map[string]interface{}{
+						"version-source": "BP_DOTNET_FRAMEWORK_VERSION",
+						"version":        "2.5.x",
+						"launch":         true,
+					},
+				},
+				{
+					Name: "dotnet-core-aspnet-runtime",
+					Metadata: map[string]interface{}{
+						"launch": true,
+					},
+				},
+			}))
+
+			Expect(buffer.String()).To(ContainSubstring("WARNING: Requiring dotnet-runtime or dotnet-aspnetcore in your build plan will be deprecated soon in .NET Core Buildpack v2.0.0."))
+			Expect(buffer.String()).To(ContainSubstring("Please require dotnet-core-aspnet-runtime in your build plan going forward."))
+		})
+	})
+
 	context("failure cases", func() {
 		context("when the config parser fails", func() {
 			it.Before(func() {

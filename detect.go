@@ -27,6 +27,19 @@ func Detect(environment Environment) packit.DetectFunc {
 					{Name: "dotnet-core-aspnet-runtime"},
 				},
 				Requires: requirements,
+				Or: []packit.BuildPlan{
+					{
+						Provides: []packit.BuildPlanProvision{
+							{Name: "dotnet-runtime"},
+						},
+					},
+					{
+						Provides: []packit.BuildPlanProvision{
+							{Name: "dotnet-runtime"},
+							{Name: "dotnet-aspnetcore"},
+						},
+					},
+				},
 			},
 		}, nil
 	}
