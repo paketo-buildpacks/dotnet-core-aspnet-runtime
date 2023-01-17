@@ -46,6 +46,19 @@ func testDetect(t *testing.T, context spec.G, it spec.S) {
 					Name: "dotnet-core-aspnet-runtime",
 				},
 			},
+			Or: []packit.BuildPlan{
+				{
+					Provides: []packit.BuildPlanProvision{
+						{Name: "dotnet-runtime"},
+					},
+				},
+				{
+					Provides: []packit.BuildPlanProvision{
+						{Name: "dotnet-runtime"},
+						{Name: "dotnet-aspnetcore"},
+					},
+				},
+			},
 		}))
 	})
 
@@ -76,6 +89,19 @@ func testDetect(t *testing.T, context spec.G, it spec.S) {
 						},
 					},
 				},
+				Or: []packit.BuildPlan{
+					{
+						Provides: []packit.BuildPlanProvision{
+							{Name: "dotnet-runtime"},
+						},
+					},
+					{
+						Provides: []packit.BuildPlanProvision{
+							{Name: "dotnet-runtime"},
+							{Name: "dotnet-aspnetcore"},
+						},
+					},
+				},
 			}))
 		})
 	})
@@ -102,6 +128,19 @@ func testDetect(t *testing.T, context spec.G, it spec.S) {
 						Metadata: map[string]interface{}{
 							"version-source": "buildpack.yml",
 							"version":        "1.2.3",
+						},
+					},
+				},
+				Or: []packit.BuildPlan{
+					{
+						Provides: []packit.BuildPlanProvision{
+							{Name: "dotnet-runtime"},
+						},
+					},
+					{
+						Provides: []packit.BuildPlanProvision{
+							{Name: "dotnet-runtime"},
+							{Name: "dotnet-aspnetcore"},
 						},
 					},
 				},

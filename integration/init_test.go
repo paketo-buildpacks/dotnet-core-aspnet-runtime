@@ -8,10 +8,11 @@ import (
 	"time"
 
 	"github.com/BurntSushi/toml"
-	. "github.com/onsi/gomega"
 	"github.com/paketo-buildpacks/occam"
 	"github.com/sclevine/spec"
 	"github.com/sclevine/spec/report"
+
+	. "github.com/onsi/gomega"
 )
 
 var (
@@ -78,6 +79,7 @@ func TestIntegration(t *testing.T) {
 	SetDefaultEventuallyTimeout(5 * time.Second)
 
 	suite := spec.New("Integration", spec.Report(report.Terminal{}), spec.Parallel())
+	suite("BackwardsCompatible", testBackwardsCompatible)
 	suite("BuildpackYML", testBuildpackYML)
 	suite("Default", testDefault)
 	suite("LayerReuse", testLayerReuse)
