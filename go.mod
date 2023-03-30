@@ -13,7 +13,7 @@ require (
 	github.com/anchore/packageurl-go v0.1.1-0.20230104203445-02e0a6721501
 	github.com/go-enry/go-license-detector/v4 v4.3.0
 	github.com/gravityblast/go-jsmin v0.0.0-20141027113318-a32d741b3595
-	github.com/onsi/gomega v1.27.5
+	github.com/onsi/gomega v1.27.6
 	github.com/paketo-buildpacks/occam v0.16.0
 	github.com/paketo-buildpacks/packit/v2 v2.9.0
 	github.com/sclevine/spec v1.4.0
