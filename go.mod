@@ -11,7 +11,7 @@ require (
 	github.com/Masterminds/semver/v3 v3.2.1
 	github.com/Netflix/go-env v0.0.0-20220526054621-78278af1949d
 	github.com/anchore/packageurl-go v0.1.1-0.20230104203445-02e0a6721501
-	github.com/go-enry/go-license-detector/v4 v4.3.0
+	github.com/go-enry/go-license-detector/v4 v4.3.1
 	github.com/gravityblast/go-jsmin v0.0.0-20141027113318-a32d741b3595
 	github.com/onsi/gomega v1.27.8
 	github.com/paketo-buildpacks/occam v0.16.0
