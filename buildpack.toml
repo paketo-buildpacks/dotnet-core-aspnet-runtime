@@ -81,6 +81,11 @@ api = "0.8"
     id = "dotnet-core-aspnet-runtime"
     patches = 2
 
+  [[metadata.dependency-constraints]]
+    constraint = "8.0.*"
+    id = "dotnet-core-aspnet-runtime"
+    patches = 2
+
 [[stacks]]
   id = "io.buildpacks.stacks.bionic"
 
