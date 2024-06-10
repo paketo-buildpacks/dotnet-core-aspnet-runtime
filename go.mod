@@ -1,6 +1,8 @@
 module github.com/paketo-buildpacks/dotnet-core-aspnet-runtime
 
-go 1.18
+go 1.21
+
+toolchain go1.22.4
 
 // This is required because of a breaking change in a newer version
 replace github.com/ekzhu/minhash-lsh => github.com/ekzhu/minhash-lsh v0.0.0-20171225071031-5c06ee8586a1
