@@ -108,7 +108,8 @@ func testLayerReuse(t *testing.T, context spec.G, it spec.S) {
 				"    No exact version match found; attempting version roll-forward",
 				"",
 				MatchRegexp(`    Selected ASP.NET Core Runtime version \(using runtimeconfig.json\): 6\.0\.\d+`),
-				"",
+			))
+			Expect(logs).To(ContainLines(
 				MatchRegexp(fmt.Sprintf("  Reusing cached layer /layers/%s/dotnet-core-aspnet-runtime", strings.ReplaceAll(buildpackInfo.Buildpack.ID, "/", "_"))),
 				"",
 			))
