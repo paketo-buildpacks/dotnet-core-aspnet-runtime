@@ -72,12 +72,12 @@ api = "0.8"
     version = "8.0.11"
 
   [[metadata.dependency-constraints]]
-    constraint = "6.0.*"
+    constraint = "8.0.*"
     id = "dotnet-core-aspnet-runtime"
     patches = 2
 
   [[metadata.dependency-constraints]]
-    constraint = "8.0.*"
+    constraint = "9.0.*"
     id = "dotnet-core-aspnet-runtime"
     patches = 2
 
