@@ -57,7 +57,7 @@ func testBuildpackYML(t *testing.T, context spec.G, it spec.S) {
 
 			err = os.WriteFile(filepath.Join(source, "buildpack.yml"), []byte(`---
 dotnet-framework:
-  version: 6.0.0
+  version: 8.0.0
 `), 0666)
 			Expect(err).NotTo(HaveOccurred())
 

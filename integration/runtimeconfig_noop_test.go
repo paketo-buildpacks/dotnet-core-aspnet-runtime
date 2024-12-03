@@ -43,7 +43,7 @@ func testRuntimeconfigNoop(t *testing.T, context spec.G, it spec.S) {
 			source, err = occam.Source(filepath.Join("testdata", "default"))
 			Expect(err).NotTo(HaveOccurred())
 
-			Expect(os.WriteFile(filepath.Join(source, "fde_dotnet_6.runtimeconfig.json"), []byte(`{
+			Expect(os.WriteFile(filepath.Join(source, "default.runtimeconfig.json"), []byte(`{
   "runtimeOptions": {
     "configProperties": {
       "System.GC.Server": true,
@@ -97,7 +97,7 @@ func testRuntimeconfigNoop(t *testing.T, context spec.G, it spec.S) {
 			source, err = occam.Source(filepath.Join("testdata", "default"))
 			Expect(err).NotTo(HaveOccurred())
 
-			Expect(os.Remove(filepath.Join(source, "fde_dotnet_6.runtimeconfig.json"))).To(Succeed())
+			Expect(os.Remove(filepath.Join(source, "default.runtimeconfig.json"))).To(Succeed())
 		})
 
 		it.After(func() {
