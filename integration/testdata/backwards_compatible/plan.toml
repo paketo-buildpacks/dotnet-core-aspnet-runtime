@@ -1,5 +1,0 @@
-[[requires]]
-  name = "dotnet-runtime"
-
-  [requires.metadata]
-    launch = true
