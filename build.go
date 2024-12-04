@@ -8,7 +8,6 @@ import (
 	"regexp"
 	"time"
 
-	"github.com/Masterminds/semver"
 	"github.com/paketo-buildpacks/packit/v2"
 	"github.com/paketo-buildpacks/packit/v2/cargo"
 	"github.com/paketo-buildpacks/packit/v2/chronos"
@@ -86,39 +85,14 @@ func Build(
 
 		logger.Process("Resolving ASP.NET Core Runtime version")
 
-		// Convert dotnet-runtime and dotnet-aspnetcore BuildpackPlanEntries into
-		// dotnet-core-aspnet-runtime entries and then print a warning
-		var warn bool
-		for i := range context.Plan.Entries {
-			if context.Plan.Entries[i].Name == "dotnet-runtime" || context.Plan.Entries[i].Name == "dotnet-aspnetcore" {
-				warn = true
-				context.Plan.Entries[i].Name = "dotnet-core-aspnet-runtime"
-			}
-		}
-
-		if warn {
-			nextMajorVersion := semver.MustParse(context.BuildpackInfo.Version).IncMajor()
-			logger.Subprocess("WARNING: Requiring dotnet-runtime or dotnet-aspnetcore in your build plan will be deprecated soon in .NET Core Buildpack v%s.", nextMajorVersion.String())
-			logger.Subprocess("Please require dotnet-core-aspnet-runtime in your build plan going forward.")
-			logger.Break()
-		}
-
 		priorities := []interface{}{
 			"BP_DOTNET_FRAMEWORK_VERSION",
-			"buildpack.yml",
 			"runtimeconfig.json",
 			regexp.MustCompile(`.*\.(cs)|(fs)|(vb)proj`),
 		}
+
 		entry, sortedEntries := entries.Resolve("dotnet-core-aspnet-runtime", context.Plan.Entries, priorities)
 		logger.Candidates(sortedEntries)
-
-		source, _ := entry.Metadata["version-source"].(string)
-		if source == "buildpack.yml" {
-			nextMajorVersion := semver.MustParse(context.BuildpackInfo.Version).IncMajor()
-			logger.Subprocess("WARNING: Setting the .NET Framework version through buildpack.yml will be deprecated soon in .NET Core ASP.NET Core Runtime Buildpack v%s.", nextMajorVersion.String())
-			logger.Subprocess("Please specify the version through the $BP_DOTNET_FRAMEWORK_VERSION environment variable instead. See docs for more information.")
-			logger.Break()
-		}
 
 		dependency, err := versionResolver.Resolve(filepath.Join(context.CNBPath, "buildpack.toml"), entry, context.Stack)
 		if err != nil {
