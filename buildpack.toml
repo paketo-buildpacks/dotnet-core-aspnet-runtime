@@ -16,20 +16,6 @@ api = "0.8"
   pre-package = "./scripts/build.sh"
 
   [[metadata.dependencies]]
-    checksum = "sha512:b292dea52f70035bb7ccc82c1ed908fb084753eb08f662c7bb2e9206e22f396aa611db6573e827d5c5cff21590810b66eae0ead9b534bc3f8fc695f65f47f28f"
-    cpe = "cpe:2.3:a:microsoft:.net:8.0.17:*:*:*:*:*:*:*"
-    deprecation_date = "2026-11-10T00:00:00Z"
-    id = "dotnet-core-aspnet-runtime"
-    licenses = ["JSON", "MIT", "MIT-0", "MIT-advertising", "MIT-feh", "X11-distribute-modifications-variant"]
-    name = "ASP.NET Core Runtime"
-    purl = "pkg:generic/dotnet-core-aspnet-runtime@8.0.17?checksum=b292dea52f70035bb7ccc82c1ed908fb084753eb08f662c7bb2e9206e22f396aa611db6573e827d5c5cff21590810b66eae0ead9b534bc3f8fc695f65f47f28f&download_url=https://builds.dotnet.microsoft.com/dotnet/aspnetcore/Runtime/8.0.17/aspnetcore-runtime-8.0.17-linux-x64.tar.gz"
-    source = "https://builds.dotnet.microsoft.com/dotnet/aspnetcore/Runtime/8.0.17/aspnetcore-runtime-8.0.17-linux-x64.tar.gz"
-    source-checksum = "sha512:b292dea52f70035bb7ccc82c1ed908fb084753eb08f662c7bb2e9206e22f396aa611db6573e827d5c5cff21590810b66eae0ead9b534bc3f8fc695f65f47f28f"
-    stacks = ["io.buildpacks.stacks.bionic", "io.buildpacks.stacks.jammy"]
-    uri = "https://builds.dotnet.microsoft.com/dotnet/aspnetcore/Runtime/8.0.17/aspnetcore-runtime-8.0.17-linux-x64.tar.gz"
-    version = "8.0.17"
-
-  [[metadata.dependencies]]
     checksum = "sha512:896e9cab7c3ea5384c174e7e2cffae3c7f8f9ed5d6d2b7434b5a2b0dc3f02b611ff8668f5d70c0b356a6a5d85a28fe40756cf356b168d0306370da11646b4b23"
     cpe = "cpe:2.3:a:microsoft:.net:8.0.18:*:*:*:*:*:*:*"
     deprecation_date = "2026-11-10T00:00:00Z"
@@ -44,18 +30,18 @@ api = "0.8"
     version = "8.0.18"
 
   [[metadata.dependencies]]
-    checksum = "sha512:54c122c4c6127ce7e0f0ad0479a101db1455484c9e5bffa8fdc0dd72d2db028be86861f331f2c7c1cb2eaee9a92e741e4e5da567795533e46af27e4e481c0451"
-    cpe = "cpe:2.3:a:microsoft:.net:9.0.6:*:*:*:*:*:*:*"
-    deprecation_date = "2026-05-12T00:00:00Z"
+    checksum = "sha512:9503fe84627716cb9df02c648e34971c6ec4d44686f213bc6f6bd74bc54ffb41ef272fbd2c8aa3f0a309b20664796c12f9c77b137015f84581ac265af2f21687"
+    cpe = "cpe:2.3:a:microsoft:.net:8.0.19:*:*:*:*:*:*:*"
+    deprecation_date = "2026-11-10T00:00:00Z"
     id = "dotnet-core-aspnet-runtime"
     licenses = ["JSON", "MIT", "MIT-0", "MIT-advertising", "MIT-feh", "X11-distribute-modifications-variant"]
     name = "ASP.NET Core Runtime"
-    purl = "pkg:generic/dotnet-core-aspnet-runtime@9.0.6?checksum=54c122c4c6127ce7e0f0ad0479a101db1455484c9e5bffa8fdc0dd72d2db028be86861f331f2c7c1cb2eaee9a92e741e4e5da567795533e46af27e4e481c0451&download_url=https://builds.dotnet.microsoft.com/dotnet/aspnetcore/Runtime/9.0.6/aspnetcore-runtime-9.0.6-linux-x64.tar.gz"
-    source = "https://builds.dotnet.microsoft.com/dotnet/aspnetcore/Runtime/9.0.6/aspnetcore-runtime-9.0.6-linux-x64.tar.gz"
-    source-checksum = "sha512:54c122c4c6127ce7e0f0ad0479a101db1455484c9e5bffa8fdc0dd72d2db028be86861f331f2c7c1cb2eaee9a92e741e4e5da567795533e46af27e4e481c0451"
+    purl = "pkg:generic/dotnet-core-aspnet-runtime@8.0.19?checksum=9503fe84627716cb9df02c648e34971c6ec4d44686f213bc6f6bd74bc54ffb41ef272fbd2c8aa3f0a309b20664796c12f9c77b137015f84581ac265af2f21687&download_url=https://builds.dotnet.microsoft.com/dotnet/aspnetcore/Runtime/8.0.19/aspnetcore-runtime-8.0.19-linux-x64.tar.gz"
+    source = "https://builds.dotnet.microsoft.com/dotnet/aspnetcore/Runtime/8.0.19/aspnetcore-runtime-8.0.19-linux-x64.tar.gz"
+    source-checksum = "sha512:9503fe84627716cb9df02c648e34971c6ec4d44686f213bc6f6bd74bc54ffb41ef272fbd2c8aa3f0a309b20664796c12f9c77b137015f84581ac265af2f21687"
     stacks = ["io.buildpacks.stacks.bionic", "io.buildpacks.stacks.jammy"]
-    uri = "https://builds.dotnet.microsoft.com/dotnet/aspnetcore/Runtime/9.0.6/aspnetcore-runtime-9.0.6-linux-x64.tar.gz"
-    version = "9.0.6"
+    uri = "https://builds.dotnet.microsoft.com/dotnet/aspnetcore/Runtime/8.0.19/aspnetcore-runtime-8.0.19-linux-x64.tar.gz"
+    version = "8.0.19"
 
   [[metadata.dependencies]]
     checksum = "sha512:b175d4d0578f9f5d735d59def3f44459462ef36b4bd07d9ca0ed9853bf42d90c7bace195ff264a9dcf6dd4d6d452c87059085146268fce3540ed58eaf39629eb"
@@ -70,6 +56,20 @@ api = "0.8"
     stacks = ["io.buildpacks.stacks.bionic", "io.buildpacks.stacks.jammy"]
     uri = "https://builds.dotnet.microsoft.com/dotnet/aspnetcore/Runtime/9.0.7/aspnetcore-runtime-9.0.7-linux-x64.tar.gz"
     version = "9.0.7"
+
+  [[metadata.dependencies]]
+    checksum = "sha512:08afdf924d00f875b44cc4eff68b55fb9b63e4cc68e6b5cde873da2bce9c5b5f4120e869b6a1dfdea4ab104ab0ac8783ef1577b4d3275aae899a53cd88130f1d"
+    cpe = "cpe:2.3:a:microsoft:.net:9.0.8:*:*:*:*:*:*:*"
+    deprecation_date = "2026-05-12T00:00:00Z"
+    id = "dotnet-core-aspnet-runtime"
+    licenses = ["JSON", "MIT", "MIT-0", "MIT-advertising", "MIT-feh", "X11-distribute-modifications-variant"]
+    name = "ASP.NET Core Runtime"
+    purl = "pkg:generic/dotnet-core-aspnet-runtime@9.0.8?checksum=08afdf924d00f875b44cc4eff68b55fb9b63e4cc68e6b5cde873da2bce9c5b5f4120e869b6a1dfdea4ab104ab0ac8783ef1577b4d3275aae899a53cd88130f1d&download_url=https://builds.dotnet.microsoft.com/dotnet/aspnetcore/Runtime/9.0.8/aspnetcore-runtime-9.0.8-linux-x64.tar.gz"
+    source = "https://builds.dotnet.microsoft.com/dotnet/aspnetcore/Runtime/9.0.8/aspnetcore-runtime-9.0.8-linux-x64.tar.gz"
+    source-checksum = "sha512:08afdf924d00f875b44cc4eff68b55fb9b63e4cc68e6b5cde873da2bce9c5b5f4120e869b6a1dfdea4ab104ab0ac8783ef1577b4d3275aae899a53cd88130f1d"
+    stacks = ["io.buildpacks.stacks.bionic", "io.buildpacks.stacks.jammy"]
+    uri = "https://builds.dotnet.microsoft.com/dotnet/aspnetcore/Runtime/9.0.8/aspnetcore-runtime-9.0.8-linux-x64.tar.gz"
+    version = "9.0.8"
 
   [[metadata.dependency-constraints]]
     constraint = "8.0.*"
