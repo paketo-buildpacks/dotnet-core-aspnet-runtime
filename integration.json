@@ -1,6 +1,6 @@
 {
   "builders": [
-    "index.docker.io/paketobuildpacks/builder-jammy-buildpackless-base"
+    "index.docker.io/paketobuildpacks/builder-jammy-buildpackless-base:latest"
   ],
-  "build-plan": "index.docker.io/paketocommunity/build-plan"
+  "build-plan": "index.docker.io/paketocommunity/build-plan:latest"
 }
