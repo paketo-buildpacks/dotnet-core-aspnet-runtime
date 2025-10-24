@@ -371,7 +371,7 @@ version = "2.2.4"
 
 			it("returns an error", func() {
 				_, err := versionResolver.Resolve(buildpackToml, entry, "some-stack")
-				Expect(err).To(MatchError(ContainSubstring("Invalid Semantic Version")))
+				Expect(err).To(MatchError(ContainSubstring("invalid semantic version")))
 			})
 		})
 	})
