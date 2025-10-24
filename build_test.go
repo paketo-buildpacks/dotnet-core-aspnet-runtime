@@ -158,14 +158,13 @@ func testBuild(t *testing.T, context spec.G, it spec.S) {
 		content, err := io.ReadAll(cdx.Content)
 		Expect(err).NotTo(HaveOccurred())
 		Expect(string(content)).To(MatchJSON(`{
+			"$schema": "http://cyclonedx.org/schema/bom-1.3.schema.json",
 			"bomFormat": "CycloneDX",
-			"components": [],
 			"metadata": {
 				"tools": [
 					{
-						"name": "syft",
-						"vendor": "anchore",
-						"version": "[not provided]"
+						"name": "",
+						"vendor": "anchore"
 					}
 				]
 			},
@@ -178,25 +177,37 @@ func testBuild(t *testing.T, context spec.G, it spec.S) {
 		Expect(err).NotTo(HaveOccurred())
 		Expect(string(content)).To(MatchJSON(`{
 			"SPDXID": "SPDXRef-DOCUMENT",
-			"creationInfo": {
-				"created": "0001-01-01T00:00:00Z",
-				"creators": [
-					"Organization: Anchore, Inc",
-					"Tool: syft-"
-				],
-				"licenseListVersion": "3.16"
-			},
-			"dataLicense": "CC0-1.0",
-			"documentNamespace": "https://paketo.io/packit/unknown-source-type/unknown-88cfa225-65e0-5755-895f-c1c8f10fde76",
-			"name": "unknown",
-			"relationships": [
-				{
-					"relatedSpdxElement": "SPDXRef-DOCUMENT",
-					"relationshipType": "DESCRIBES",
-					"spdxElementId": "SPDXRef-DOCUMENT"
-				}
-			],
-			"spdxVersion": "SPDX-2.2"
+              "creationInfo": {
+                "created": "0001-01-01T00:00:00Z",
+                "creators": [
+                  "Organization: Anchore, Inc",
+                  "Tool: -"
+                ],
+                "licenseListVersion": "3.27"
+              },
+              "dataLicense": "CC0-1.0",
+              "documentNamespace": "https://paketo.io/unknown-source-type/unknown-33ef57ff-45c2-53a8-8899-1c2b7e94d0dd",
+              "name": "unknown",
+              "packages": [
+                {
+                  "SPDXID": "SPDXRef-DocumentRoot-Unknown-",
+                  "copyrightText": "NOASSERTION",
+                  "downloadLocation": "NOASSERTION",
+                  "filesAnalyzed": false,
+                  "licenseConcluded": "NOASSERTION",
+                  "licenseDeclared": "NOASSERTION",
+                  "name": "",
+                  "supplier": "NOASSERTION"
+                }
+              ],
+              "relationships": [
+                {
+                  "relatedSpdxElement": "SPDXRef-DocumentRoot-Unknown-",
+                  "relationshipType": "DESCRIBES",
+                  "spdxElementId": "SPDXRef-DOCUMENT"
+                }
+              ],
+              "spdxVersion": "SPDX-2.2"
 		}`))
 
 		Expect(result.Launch.BOM).To(HaveLen(1))
