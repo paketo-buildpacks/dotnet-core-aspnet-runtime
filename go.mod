@@ -8,7 +8,7 @@ require (
 	github.com/Netflix/go-env v0.1.2
 	github.com/gravityblast/go-jsmin v0.0.0-20141027113318-a32d741b3595
 	github.com/onsi/gomega v1.38.2
-	github.com/paketo-buildpacks/occam v0.30.2
+	github.com/paketo-buildpacks/occam v0.31.0
 	github.com/paketo-buildpacks/packit/v2 v2.25.2
 	github.com/sclevine/spec v1.4.0
 )
@@ -94,7 +94,8 @@ require (
 	github.com/charmbracelet/x/ansi v0.10.2 // indirect
 	github.com/charmbracelet/x/cellbuf v0.0.13 // indirect
 	github.com/charmbracelet/x/term v0.2.1 // indirect
-	github.com/clipperhouse/uax29/v2 v2.2.0 // indirect
+	github.com/clipperhouse/stringish v0.1.1 // indirect
+	github.com/clipperhouse/uax29/v2 v2.3.0 // indirect
 	github.com/cloudflare/circl v1.6.1 // indirect
 	github.com/cncf/xds/go v0.0.0-20250501225837-2ac532fd4443 // indirect
 	github.com/containerd/cgroups/v3 v3.0.5 // indirect
