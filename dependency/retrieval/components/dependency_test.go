@@ -125,7 +125,7 @@ func testDependency(t *testing.T, context spec.G, it spec.S) {
 				PURL:            fmt.Sprintf("pkg:generic/dotnet-core-aspnet-runtime@6.0.9?checksum=365237c83e7b0b836d933618bb8be9cee018e905b2c01156ef0ae1162cffbdc003ae4082ea9bb85d39f667e875882804c00d90a4280be4486ec81edb2fb64ad6&download_url=%s", server.URL),
 				DeprecationDate: &depDate,
 				ID:              "dotnet-core-aspnet-runtime",
-				Licenses:        []interface{}{"MIT", "MIT-0"},
+				Licenses:        []interface{}{"JSON", "MIT", "MIT-0", "MIT-advertising", "MIT-feh", "X11-distribute-modifications-variant"},
 				Name:            "ASP.NET Core Runtime",
 				SHA256:          "",
 				Source:          server.URL,
