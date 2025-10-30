@@ -71,6 +71,20 @@ api = "0.8"
     uri = "https://builds.dotnet.microsoft.com/dotnet/aspnetcore/Runtime/9.0.10/aspnetcore-runtime-9.0.10-linux-x64.tar.gz"
     version = "9.0.10"
 
+  [[metadata.dependencies]]
+    checksum = "sha512:1403bac32f4b4370d667841a3a4cabd11e330eb0a5491894491d3c418c5fd9ce779dd629800947ab1ea018e5a7260fcee77f202e28fa8c1896d7a0177d038c7f"
+    cpe = "cpe:2.3:a:microsoft:.net:10.0.0-rc.2.25502.107:*:*:*:*:*:*:*"
+    deprecation_date = "2025-11-11T00:00:00Z"
+    id = "dotnet-core-aspnet-runtime"
+    licenses = ["JSON", "MIT", "MIT-0", "MIT-advertising", "MIT-feh", "X11-distribute-modifications-variant"]
+    name = "ASP.NET Core Runtime"
+    purl = "pkg:generic/dotnet-core-aspnet-runtime@10.0.0-rc.2.25502.107?checksum=1403bac32f4b4370d667841a3a4cabd11e330eb0a5491894491d3c418c5fd9ce779dd629800947ab1ea018e5a7260fcee77f202e28fa8c1896d7a0177d038c7f&download_url=https://builds.dotnet.microsoft.com/dotnet/aspnetcore/Runtime/10.0.0-rc.2.25502.107/aspnetcore-runtime-10.0.0-rc.2.25502.107-linux-x64.tar.gz"
+    source = "https://builds.dotnet.microsoft.com/dotnet/aspnetcore/Runtime/10.0.0-rc.2.25502.107/aspnetcore-runtime-10.0.0-rc.2.25502.107-linux-x64.tar.gz"
+    source-checksum = "sha512:1403bac32f4b4370d667841a3a4cabd11e330eb0a5491894491d3c418c5fd9ce779dd629800947ab1ea018e5a7260fcee77f202e28fa8c1896d7a0177d038c7f"
+    stacks = ["io.buildpacks.stacks.bionic", "io.buildpacks.stacks.jammy"]
+    uri = "https://builds.dotnet.microsoft.com/dotnet/aspnetcore/Runtime/10.0.0-rc.2.25502.107/aspnetcore-runtime-10.0.0-rc.2.25502.107-linux-x64.tar.gz"
+    version = "10.0.0-rc.2.25502.107"
+
   [[metadata.dependency-constraints]]
     constraint = "8.0.*"
     id = "dotnet-core-aspnet-runtime"
@@ -80,6 +94,11 @@ api = "0.8"
     constraint = "9.0.*"
     id = "dotnet-core-aspnet-runtime"
     patches = 2
+
+  [[metadata.dependency-constraints]]
+    constraint = "~10.0.0-0"
+    id = "dotnet-core-aspnet-runtime"
+    patches = 1
 
 [[stacks]]
   id = "io.buildpacks.stacks.bionic"
