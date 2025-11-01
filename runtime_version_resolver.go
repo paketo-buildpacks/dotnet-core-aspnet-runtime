@@ -121,7 +121,7 @@ func (r RuntimeVersionResolver) Resolve(path string, entry packit.BuildpackPlanE
 
 func containsStack(stacks []string, stack string) bool {
 	for _, s := range stacks {
-		if s == stack {
+		if s == "*" || s == stack {
 			return true
 		}
 	}
