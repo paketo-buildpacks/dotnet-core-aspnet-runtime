@@ -20,7 +20,7 @@ api = "0.8"
     cpe = "cpe:2.3:a:microsoft:.net:8.0.20:*:*:*:*:*:*:*"
     deprecation_date = "2026-11-10T00:00:00Z"
     id = "dotnet-core-aspnet-runtime"
-    licenses = ["JSON", "MIT", "MIT-0", "MIT-advertising", "MIT-feh", "X11-distribute-modifications-variant"]
+    licenses = ["MIT", "MIT-0"]
     name = "ASP.NET Core Runtime"
     purl = "pkg:generic/dotnet-core-aspnet-runtime@8.0.20?checksum=228713f3c3600c49e7924e26dc86115c9674b5308b44514a53f670fa785038aa885ead8cd2c1c1850d1565b689a95a92e97f472d86429930dbfb114aa6020eb7&download_url=https://builds.dotnet.microsoft.com/dotnet/aspnetcore/Runtime/8.0.20/aspnetcore-runtime-8.0.20-linux-x64.tar.gz"
     source = "https://builds.dotnet.microsoft.com/dotnet/aspnetcore/Runtime/8.0.20/aspnetcore-runtime-8.0.20-linux-x64.tar.gz"
@@ -34,7 +34,7 @@ api = "0.8"
     cpe = "cpe:2.3:a:microsoft:.net:8.0.21:*:*:*:*:*:*:*"
     deprecation_date = "2026-11-10T00:00:00Z"
     id = "dotnet-core-aspnet-runtime"
-    licenses = ["JSON", "MIT", "MIT-0", "MIT-advertising", "MIT-feh", "X11-distribute-modifications-variant"]
+    licenses = ["MIT", "MIT-0"]
     name = "ASP.NET Core Runtime"
     purl = "pkg:generic/dotnet-core-aspnet-runtime@8.0.21?checksum=4aa9458d3de7b4ff960adcc4a655e4d7e4e6570e97791919113b8c9a55883964a60241daf3a70c60494cde1a61155d802339ec03b046466eac67298f0acc7289&download_url=https://builds.dotnet.microsoft.com/dotnet/aspnetcore/Runtime/8.0.21/aspnetcore-runtime-8.0.21-linux-x64.tar.gz"
     source = "https://builds.dotnet.microsoft.com/dotnet/aspnetcore/Runtime/8.0.21/aspnetcore-runtime-8.0.21-linux-x64.tar.gz"
@@ -48,7 +48,7 @@ api = "0.8"
     cpe = "cpe:2.3:a:microsoft:.net:9.0.9:*:*:*:*:*:*:*"
     deprecation_date = "2026-05-12T00:00:00Z"
     id = "dotnet-core-aspnet-runtime"
-    licenses = ["JSON", "MIT", "MIT-0", "MIT-advertising", "MIT-feh", "X11-distribute-modifications-variant"]
+    licenses = ["MIT", "MIT-0"]
     name = "ASP.NET Core Runtime"
     purl = "pkg:generic/dotnet-core-aspnet-runtime@9.0.9?checksum=7ff1b517c45b2c7720fc1be808842c5b7f644ff9138f221862620e23660db528b5961f791434aa75885c808ecb3bf9d213a33e8ff3eaa477df7d6256d215a6c4&download_url=https://builds.dotnet.microsoft.com/dotnet/aspnetcore/Runtime/9.0.9/aspnetcore-runtime-9.0.9-linux-x64.tar.gz"
     source = "https://builds.dotnet.microsoft.com/dotnet/aspnetcore/Runtime/9.0.9/aspnetcore-runtime-9.0.9-linux-x64.tar.gz"
@@ -62,7 +62,7 @@ api = "0.8"
     cpe = "cpe:2.3:a:microsoft:.net:9.0.10:*:*:*:*:*:*:*"
     deprecation_date = "2026-11-10T00:00:00Z"
     id = "dotnet-core-aspnet-runtime"
-    licenses = ["JSON", "MIT", "MIT-0", "MIT-advertising", "MIT-feh", "X11-distribute-modifications-variant"]
+    licenses = ["MIT", "MIT-0"]
     name = "ASP.NET Core Runtime"
     purl = "pkg:generic/dotnet-core-aspnet-runtime@9.0.10?checksum=ba1b184f3bc1c7d423186240fa30e4acd0b8392e8c61b7b593b8d12f8accc65dccfcd4120d9b9ec25c3a278df4fbaf324ff2cf1b8d3997a24417eb2abb2d8043&download_url=https://builds.dotnet.microsoft.com/dotnet/aspnetcore/Runtime/9.0.10/aspnetcore-runtime-9.0.10-linux-x64.tar.gz"
     source = "https://builds.dotnet.microsoft.com/dotnet/aspnetcore/Runtime/9.0.10/aspnetcore-runtime-9.0.10-linux-x64.tar.gz"
@@ -76,7 +76,7 @@ api = "0.8"
     cpe = "cpe:2.3:a:microsoft:.net:10.0.0-rc.2.25502.107:*:*:*:*:*:*:*"
     deprecation_date = "2025-11-11T00:00:00Z"
     id = "dotnet-core-aspnet-runtime"
-    licenses = ["JSON", "MIT", "MIT-0", "MIT-advertising", "MIT-feh", "X11-distribute-modifications-variant"]
+    licenses = ["MIT", "MIT-0"]
     name = "ASP.NET Core Runtime"
     purl = "pkg:generic/dotnet-core-aspnet-runtime@10.0.0-rc.2.25502.107?checksum=1403bac32f4b4370d667841a3a4cabd11e330eb0a5491894491d3c418c5fd9ce779dd629800947ab1ea018e5a7260fcee77f202e28fa8c1896d7a0177d038c7f&download_url=https://builds.dotnet.microsoft.com/dotnet/aspnetcore/Runtime/10.0.0-rc.2.25502.107/aspnetcore-runtime-10.0.0-rc.2.25502.107-linux-x64.tar.gz"
     source = "https://builds.dotnet.microsoft.com/dotnet/aspnetcore/Runtime/10.0.0-rc.2.25502.107/aspnetcore-runtime-10.0.0-rc.2.25502.107-linux-x64.tar.gz"
