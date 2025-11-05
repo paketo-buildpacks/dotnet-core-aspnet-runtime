@@ -81,11 +81,6 @@ func testDependency(t *testing.T, context spec.G, it spec.S) {
 					_, err := w.Write(buffer.Bytes())
 					Expect(err).NotTo(HaveOccurred())
 
-				case "/bad-archive":
-					w.WriteHeader(http.StatusOK)
-					_, err := w.Write([]byte("\x66\x4C\x61\x43\x00\x00\x00\x22"))
-					Expect(err).NotTo(HaveOccurred())
-
 				default:
 					t.Fatalf("unknown path: %s", req.URL.Path)
 				}
@@ -132,8 +127,7 @@ func testDependency(t *testing.T, context spec.G, it spec.S) {
 				SourceChecksum:  "sha512:365237c83e7b0b836d933618bb8be9cee018e905b2c01156ef0ae1162cffbdc003ae4082ea9bb85d39f667e875882804c00d90a4280be4486ec81edb2fb64ad6",
 				SourceSHA256:    "",
 				Stacks: []string{
-					"io.buildpacks.stacks.bionic",
-					"io.buildpacks.stacks.jammy",
+					"*",
 				},
 				StripComponents: 0,
 				URI:             server.URL,
@@ -141,80 +135,11 @@ func testDependency(t *testing.T, context spec.G, it spec.S) {
 			}))
 		})
 
-		context("when the release is 3.1.*", func() {
-			it("returns returns a cargo dependency generated from the given release with different purl and stacks", func() {
-				dependency, err := components.ConvertReleaseToDependency(components.Release{
-					SemVer:  semver.MustParse("3.1.29"),
-					EOLDate: "2022-12-13",
-					Version: "3.1.29",
-					Files: []components.ReleaseFile{
-						{
-							Name: "dotnet-aspnet-runtime-linux-x64.zip",
-							Rid:  "linux-x64",
-							URL:  "zip-file",
-							Hash: "365237c83e7b0b836d933618bb8be9cee018e905b2c01156ef0ae1162cffbdc003ae4082ea9bb85d39f667e875882804c00d90a4280be4486ec81edb2fb64ad6",
-						},
-						{
-							Name: "dotnet-aspnet-runtime-linux-x64.tar.gz",
-							Rid:  "linux-x64",
-							URL:  server.URL,
-							Hash: "365237c83e7b0b836d933618bb8be9cee018e905b2c01156ef0ae1162cffbdc003ae4082ea9bb85d39f667e875882804c00d90a4280be4486ec81edb2fb64ad6",
-						},
-					},
-				},
-				)
-				Expect(err).NotTo(HaveOccurred())
-
-				depDate, err := time.ParseInLocation("2006-01-02", "2022-12-13", time.UTC)
-				Expect(err).NotTo(HaveOccurred())
-
-				Expect(dependency).To(Equal(cargo.ConfigMetadataDependency{
-					Checksum:        "sha512:365237c83e7b0b836d933618bb8be9cee018e905b2c01156ef0ae1162cffbdc003ae4082ea9bb85d39f667e875882804c00d90a4280be4486ec81edb2fb64ad6",
-					CPE:             "cpe:2.3:a:microsoft:.net_core:3.1.29:*:*:*:*:*:*:*",
-					PURL:            fmt.Sprintf("pkg:generic/dotnet-core-aspnet-runtime@3.1.29?checksum=365237c83e7b0b836d933618bb8be9cee018e905b2c01156ef0ae1162cffbdc003ae4082ea9bb85d39f667e875882804c00d90a4280be4486ec81edb2fb64ad6&download_url=%s", server.URL),
-					DeprecationDate: &depDate,
-					ID:              "dotnet-core-aspnet-runtime",
-					Licenses:        []interface{}{"MIT", "MIT-0"},
-					Name:            "ASP.NET Core Runtime",
-					SHA256:          "",
-					Source:          server.URL,
-					SourceChecksum:  "sha512:365237c83e7b0b836d933618bb8be9cee018e905b2c01156ef0ae1162cffbdc003ae4082ea9bb85d39f667e875882804c00d90a4280be4486ec81edb2fb64ad6",
-					SourceSHA256:    "",
-					Stacks: []string{
-						"io.buildpacks.stacks.bionic",
-					},
-					StripComponents: 0,
-					URI:             server.URL,
-					Version:         "3.1.29",
-				}))
-			})
-		})
-
 		context("failure cases", func() {
 			context("when there is not a linux-x64 release file", func() {
 				it("returns an error", func() {
 					_, err := components.ConvertReleaseToDependency(components.Release{})
 					Expect(err).To(MatchError("could not find release file for linux/x64"))
-				})
-			})
-
-			context("when the artifact is not a supported archive type", func() {
-				it("returns an error", func() {
-					_, err := components.ConvertReleaseToDependency(components.Release{
-						SemVer:  semver.MustParse("3.1.29"),
-						EOLDate: "2022-12-13",
-						Version: "3.1.29",
-						Files: []components.ReleaseFile{
-							{
-								Name: "dotnet-aspnet-runtime-linux-x64.tar.gz",
-								Rid:  "linux-x64",
-								URL:  fmt.Sprintf("%s/bad-archive", server.URL),
-								Hash: "365237c83e7b0b836d933618bb8be9cee018e905b2c01156ef0ae1162cffbdc003ae4082ea9bb85d39f667e875882804c00d90a4280be4486ec81edb2fb64ad6",
-							},
-						},
-					},
-					)
-					Expect(err).To(MatchError(ContainSubstring("unsupported archive type")))
 				})
 			})
 
