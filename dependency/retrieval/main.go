@@ -7,5 +7,5 @@ import (
 
 func main() {
 	fetcher := components.NewFetcher()
-	retrieve.NewMetadataWithPlatforms("dotnet-core-aspnet-runtime", fetcher.Get, components.GenerateMetadata)
+	retrieve.NewMetadataWithPlatforms("dotnet-core-aspnet-runtime", fetcher.GetReleases, components.GenerateMetadata)
 }

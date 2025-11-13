@@ -188,7 +188,7 @@ func testReleases(t *testing.T, context spec.G, it spec.S) {
 		})
 
 		it("fetches a list of relevant releases", func() {
-			releases, err := fetcher.Get()
+			releases, err := fetcher.GetReleases()
 			Expect(err).NotTo(HaveOccurred())
 
 			Expect(releases).To(BeEquivalentTo([]versionology.VersionFetcher{
@@ -241,7 +241,7 @@ func testReleases(t *testing.T, context spec.G, it spec.S) {
 				})
 
 				it("returns an error", func() {
-					_, err := fetcher.Get()
+					_, err := fetcher.GetReleases()
 					Expect(err).To(MatchError(ContainSubstring("unsupported protocol scheme")))
 				})
 			})
@@ -252,7 +252,7 @@ func testReleases(t *testing.T, context spec.G, it spec.S) {
 				})
 
 				it("returns an error", func() {
-					_, err := fetcher.Get()
+					_, err := fetcher.GetReleases()
 					Expect(err).To(MatchError(fmt.Sprintf("received a non 200 status code from %s: status code 418 received", fmt.Sprintf("%s/index-non-200", releaseIndex.URL))))
 				})
 			})
@@ -263,7 +263,7 @@ func testReleases(t *testing.T, context spec.G, it spec.S) {
 				})
 
 				it("returns an error", func() {
-					_, err := fetcher.Get()
+					_, err := fetcher.GetReleases()
 					Expect(err).To(MatchError(ContainSubstring("invalid character '?' looking for beginning of value")))
 				})
 			})
@@ -274,7 +274,7 @@ func testReleases(t *testing.T, context spec.G, it spec.S) {
 				})
 
 				it("returns an error", func() {
-					_, err := fetcher.Get()
+					_, err := fetcher.GetReleases()
 					Expect(err).To(MatchError(ContainSubstring("unsupported protocol scheme")))
 				})
 			})
@@ -285,7 +285,7 @@ func testReleases(t *testing.T, context spec.G, it spec.S) {
 				})
 
 				it("returns an error", func() {
-					_, err := fetcher.Get()
+					_, err := fetcher.GetReleases()
 					Expect(err).To(MatchError(fmt.Sprintf("received a non 200 status code from %s: status code 418 received", fmt.Sprintf("%s/non-200", releasePage.URL))))
 				})
 			})
@@ -296,7 +296,7 @@ func testReleases(t *testing.T, context spec.G, it spec.S) {
 				})
 
 				it("returns an error", func() {
-					_, err := fetcher.Get()
+					_, err := fetcher.GetReleases()
 					Expect(err).To(MatchError(ContainSubstring("invalid character '?' looking for beginning of value")))
 				})
 			})
@@ -307,7 +307,7 @@ func testReleases(t *testing.T, context spec.G, it spec.S) {
 				})
 
 				it("returns an error", func() {
-					_, err := fetcher.Get()
+					_, err := fetcher.GetReleases()
 					Expect(err).To(MatchError(ContainSubstring("invalid semantic version")))
 				})
 			})

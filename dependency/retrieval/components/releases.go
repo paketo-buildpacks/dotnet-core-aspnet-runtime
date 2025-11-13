@@ -42,7 +42,7 @@ func (f Fetcher) WithReleaseIndex(uri string) Fetcher {
 	return f
 }
 
-func (f Fetcher) Get() (versionology.VersionFetcherArray, error) {
+func (f Fetcher) GetReleases() (versionology.VersionFetcherArray, error) {
 	response, err := http.Get(f.releaseIndex)
 	if err != nil {
 		return nil, err
