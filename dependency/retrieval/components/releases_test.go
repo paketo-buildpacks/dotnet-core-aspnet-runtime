@@ -8,6 +8,7 @@ import (
 
 	"github.com/Masterminds/semver/v3"
 	"github.com/paketo-buildpacks/dotnet-core-aspnet-runtime/dependency/retrieval/components"
+	"github.com/paketo-buildpacks/libdependency/versionology"
 	"github.com/sclevine/spec"
 
 	. "github.com/onsi/gomega"
@@ -19,7 +20,7 @@ func testReleases(t *testing.T, context spec.G, it spec.S) {
 		Expect = NewWithT(t).Expect
 	)
 
-	context("Fetcher", func() {
+	context("GetReleases", func() {
 		var (
 			fetcher components.Fetcher
 
@@ -190,11 +191,11 @@ func testReleases(t *testing.T, context spec.G, it spec.S) {
 			releases, err := fetcher.Get()
 			Expect(err).NotTo(HaveOccurred())
 
-			Expect(releases).To(Equal([]components.Release{
-				{
-					SemVer:  semver.MustParse("6.0.10"),
-					EOLDate: "2024-11-12",
-					Version: "6.0.10",
+			Expect(releases).To(BeEquivalentTo([]versionology.VersionFetcher{
+				components.RuntimeRelease{
+					SemVer:         semver.MustParse("6.0.10"),
+					EOLDate:        "2024-11-12",
+					ReleaseVersion: "6.0.10",
 					Files: []components.ReleaseFile{
 						{
 							Name: "aspnetcore-runtime-linux-arm.tar.gz",
@@ -204,10 +205,10 @@ func testReleases(t *testing.T, context spec.G, it spec.S) {
 						},
 					},
 				},
-				{
-					SemVer:  semver.MustParse("6.0.9"),
-					EOLDate: "2024-11-12",
-					Version: "6.0.9",
+				components.RuntimeRelease{
+					SemVer:         semver.MustParse("6.0.9"),
+					EOLDate:        "2024-11-12",
+					ReleaseVersion: "6.0.9",
 					Files: []components.ReleaseFile{
 						{
 							Name: "aspnetcore-runtime-linux-arm.tar.gz",
@@ -217,10 +218,10 @@ func testReleases(t *testing.T, context spec.G, it spec.S) {
 						},
 					},
 				},
-				{
-					SemVer:  semver.MustParse("3.1.30"),
-					EOLDate: "2022-12-13",
-					Version: "3.1.30",
+				components.RuntimeRelease{
+					SemVer:         semver.MustParse("3.1.30"),
+					EOLDate:        "2022-12-13",
+					ReleaseVersion: "3.1.30",
 					Files: []components.ReleaseFile{
 						{
 							Name: "aspnetcore-runtime-linux-arm.tar.gz",

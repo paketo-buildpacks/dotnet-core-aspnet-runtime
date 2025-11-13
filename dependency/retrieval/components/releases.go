@@ -6,15 +6,14 @@ import (
 	"net/http"
 
 	"github.com/Masterminds/semver/v3"
+	"github.com/paketo-buildpacks/libdependency/versionology"
 )
 
-type Release struct {
-	SemVer *semver.Version
-
-	EOLDate string
-
-	Version string        `json:"version"`
-	Files   []ReleaseFile `json:"files"`
+type RuntimeRelease struct {
+	SemVer         *semver.Version
+	EOLDate        string
+	ReleaseVersion string
+	Files          []ReleaseFile
 }
 
 type ReleaseFile struct {
@@ -22,6 +21,10 @@ type ReleaseFile struct {
 	Rid  string `json:"rid"`
 	URL  string `json:"url"`
 	Hash string `json:"hash"`
+}
+
+func (runtimeRelease RuntimeRelease) Version() *semver.Version {
+	return runtimeRelease.SemVer
 }
 
 type Fetcher struct {
@@ -39,7 +42,7 @@ func (f Fetcher) WithReleaseIndex(uri string) Fetcher {
 	return f
 }
 
-func (f Fetcher) Get() ([]Release, error) {
+func (f Fetcher) Get() (versionology.VersionFetcherArray, error) {
 	response, err := http.Get(f.releaseIndex)
 	if err != nil {
 		return nil, err
@@ -61,7 +64,7 @@ func (f Fetcher) Get() ([]Release, error) {
 		return nil, err
 	}
 
-	var releases []Release
+	var releases versionology.VersionFetcherArray
 	for _, releaseIndex := range releasesIndex.ReleasesIndex {
 		releaseResponse, err := http.Get(releaseIndex.ReleaseJSON)
 		if err != nil {
@@ -76,7 +79,10 @@ func (f Fetcher) Get() ([]Release, error) {
 		var releasePage struct {
 			EOLDate  string `json:"eol-date"`
 			Releases []struct {
-				Release Release `json:"aspnetcore-runtime,omitempty"`
+				Runtime struct {
+					Version string        `json:"version"`
+					Files   []ReleaseFile `json:"files"`
+				} `json:"aspnetcore-runtime,omitempty"`
 			} `json:"releases"`
 		}
 
@@ -86,18 +92,21 @@ func (f Fetcher) Get() ([]Release, error) {
 		}
 
 		for _, r := range releasePage.Releases {
-			release := r.Release
+			release := RuntimeRelease{
+				ReleaseVersion: r.Runtime.Version,
+				Files:          r.Runtime.Files,
+			}
 
 			// There are some 2.1 releases that have no data attached these are
-			// elminated with this check.
-			if release.Version == "" {
+			// eliminated with this check.
+			if r.Runtime.Version == "" {
 				continue
 			}
 
 			release.EOLDate = releasePage.EOLDate
-			release.SemVer, err = semver.NewVersion(release.Version)
+			release.SemVer, err = semver.NewVersion(r.Runtime.Version)
 			if err != nil {
-				return nil, fmt.Errorf("%w: the following version string could not be parsed %q", err, release.Version)
+				return nil, fmt.Errorf("%w: the following version string could not be parsed %q", err, r.Runtime.Version)
 			}
 
 			releases = append(releases, release)
