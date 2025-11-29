@@ -44,6 +44,7 @@ func main() {
 	packit.Run(
 		dotnetcoreaspnetruntime.Detect(
 			environment,
+			logEmitter,
 		),
 		dotnetcoreaspnetruntime.Build(
 			entryResolver,

@@ -15,6 +15,16 @@ api = "0.8"
   include-files = ["buildpack.toml", "linux/amd64/bin/build", "linux/amd64/bin/detect", "linux/amd64/bin/run", "linux/arm64/bin/build", "linux/arm64/bin/detect", "linux/arm64/bin/run"]
   pre-package = "./scripts/build.sh --target linux/amd64 --target linux/arm64"
 
+  [[metadata.configurations]]
+    name        = "BP_DOTNET_RUNTIME_VERSION"
+    description = "specify a version of ASP.NET Runtime to use"
+    build       = true
+
+  [[metadata.configurations]]
+    name        = "BP_DOTNET_ROLL_FORWARD"
+    description = "set to 'Disable' to prevent ASP.NET version roll-forward"
+    build       = true
+
   [[metadata.dependencies]]
     arch = "amd64"
     checksum = "sha512:4aa9458d3de7b4ff960adcc4a655e4d7e4e6570e97791919113b8c9a55883964a60241daf3a70c60494cde1a61155d802339ec03b046466eac67298f0acc7289"
