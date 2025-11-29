@@ -86,6 +86,7 @@ func Build(
 		logger.Process("Resolving ASP.NET Core Runtime version")
 
 		priorities := []interface{}{
+			"BP_DOTNET_RUNTIME_VERSION",
 			"BP_DOTNET_FRAMEWORK_VERSION",
 			"runtimeconfig.json",
 			regexp.MustCompile(`.*\.(cs)|(fs)|(vb)proj`),
