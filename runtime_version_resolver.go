@@ -2,7 +2,9 @@ package dotnetcoreaspnetruntime
 
 import (
 	"fmt"
+	"os"
 	"regexp"
+	"runtime"
 	"sort"
 	"strings"
 
@@ -175,11 +177,36 @@ func filterBuildpackTOML(path, dependencyID, stack string) ([]postal.Dependency,
 		return []postal.Dependency{}, "", err
 	}
 
+	var targetOs string
+	targetOs = os.Getenv("CNB_TARGET_OS")
+	if targetOs == "" {
+		targetOs = runtime.GOOS
+	}
+
+	var targetArch string
+	targetArch = os.Getenv("CNB_TARGET_ARCH")
+	if targetArch == "" {
+		targetArch = runtime.GOARCH
+	}
+
 	var filteredDependencies []postal.Dependency
 	for _, dependency := range buildpackTOML.Metadata.Dependencies {
-		if dependency.ID == dependencyID && containsStack(dependency.Stacks, stack) {
+		if dependency.ID == dependencyID && containsStack(dependency.Stacks, stack) && supportsPlatform(targetOs, targetArch, dependency) {
 			filteredDependencies = append(filteredDependencies, dependency)
 		}
 	}
 	return filteredDependencies, buildpackTOML.Metadata.DefaultVersions[dependencyID], nil
+}
+
+func supportsPlatform(targetOs, targetArch string, dependency postal.Dependency) bool {
+	// Avoid strict checking in case of dependency does not specify OS/Arch
+	if dependency.OS == "" && dependency.Arch == "" {
+		return true
+	}
+
+	if targetOs != dependency.OS || targetArch != dependency.Arch {
+		return false
+	}
+
+	return true
 }
