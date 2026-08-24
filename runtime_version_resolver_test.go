@@ -52,21 +52,21 @@ func testRuntimeVersionResolver(t *testing.T, context spec.G, it spec.S) {
 	
   [[metadata.dependencies]]
     id = "dotnet-core-aspnet-runtime"
-    sha256 = "some-sha"
+    checksum = "sha512:some-sha"
     stacks = ["some-stack"]
     uri = "some-uri"
     version = "1.2.2"
 	
   [[metadata.dependencies]]
     id = "dotnet-core-aspnet-runtime"
-    sha256 = "some-sha"
+    checksum = "sha512:some-sha"
     stacks = ["some-stack"]
     uri = "some-uri"
     version = "2.2.3"
 
   [[metadata.dependencies]]
     id = "dotnet-core-aspnet-runtime"
-    sha256 = "some-sha"
+    checksum = "sha512:some-sha"
     stacks = ["some-stack"]
     uri = "some-uri"
     version = "2.2.4"
@@ -97,11 +97,11 @@ func testRuntimeVersionResolver(t *testing.T, context spec.G, it spec.S) {
 			Expect(err).NotTo(HaveOccurred())
 
 			Expect(dependency).To(Equal(postal.Dependency{
-				ID:      "dotnet-core-aspnet-runtime",
-				Version: "1.2.2",
-				URI:     "some-uri",
-				SHA256:  "some-sha",
-				Stacks:  []string{"some-stack"},
+				ID:       "dotnet-core-aspnet-runtime",
+				Version:  "1.2.2",
+				URI:      "some-uri",
+				Checksum: "sha512:some-sha",
+				Stacks:   []string{"some-stack"},
 			}))
 		})
 	})
@@ -120,11 +120,11 @@ func testRuntimeVersionResolver(t *testing.T, context spec.G, it spec.S) {
 				Expect(err).NotTo(HaveOccurred())
 
 				Expect(dependency).To(Equal(postal.Dependency{
-					ID:      "dotnet-core-aspnet-runtime",
-					Version: "2.2.3",
-					URI:     "some-uri",
-					SHA256:  "some-sha",
-					Stacks:  []string{"some-stack"},
+					ID:       "dotnet-core-aspnet-runtime",
+					Version:  "2.2.3",
+					URI:      "some-uri",
+					Checksum: "sha512:some-sha",
+					Stacks:   []string{"some-stack"},
 				}))
 			})
 		})
@@ -138,11 +138,11 @@ func testRuntimeVersionResolver(t *testing.T, context spec.G, it spec.S) {
 				Expect(err).NotTo(HaveOccurred())
 
 				Expect(dependency).To(Equal(postal.Dependency{
-					ID:      "dotnet-core-aspnet-runtime",
-					Version: "2.2.4",
-					URI:     "some-uri",
-					SHA256:  "some-sha",
-					Stacks:  []string{"some-stack"},
+					ID:       "dotnet-core-aspnet-runtime",
+					Version:  "2.2.4",
+					URI:      "some-uri",
+					Checksum: "sha512:some-sha",
+					Stacks:   []string{"some-stack"},
 				}))
 			})
 		})
@@ -169,11 +169,11 @@ func testRuntimeVersionResolver(t *testing.T, context spec.G, it spec.S) {
 				Expect(err).NotTo(HaveOccurred())
 
 				Expect(dependency).To(Equal(postal.Dependency{
-					ID:      "dotnet-core-aspnet-runtime",
-					Version: "2.2.4",
-					URI:     "some-uri",
-					SHA256:  "some-sha",
-					Stacks:  []string{"some-stack"},
+					ID:       "dotnet-core-aspnet-runtime",
+					Version:  "2.2.4",
+					URI:      "some-uri",
+					Checksum: "sha512:some-sha",
+					Stacks:   []string{"some-stack"},
 				}))
 			})
 		})
@@ -241,11 +241,11 @@ func testRuntimeVersionResolver(t *testing.T, context spec.G, it spec.S) {
 				Expect(err).NotTo(HaveOccurred())
 
 				Expect(dependency).To(Equal(postal.Dependency{
-					ID:      "dotnet-core-aspnet-runtime",
-					Version: "2.2.4",
-					URI:     "some-uri",
-					SHA256:  "some-sha",
-					Stacks:  []string{"some-stack"},
+					ID:       "dotnet-core-aspnet-runtime",
+					Version:  "2.2.4",
+					URI:      "some-uri",
+					Checksum: "sha512:some-sha",
+					Stacks:   []string{"some-stack"},
 				}))
 			})
 		})
@@ -256,11 +256,11 @@ func testRuntimeVersionResolver(t *testing.T, context spec.G, it spec.S) {
 				Expect(err).NotTo(HaveOccurred())
 
 				Expect(dependency).To(Equal(postal.Dependency{
-					ID:      "dotnet-core-aspnet-runtime",
-					Version: "1.2.2",
-					URI:     "some-uri",
-					SHA256:  "some-sha",
-					Stacks:  []string{"some-stack"},
+					ID:       "dotnet-core-aspnet-runtime",
+					Version:  "1.2.2",
+					URI:      "some-uri",
+					Checksum: "sha512:some-sha",
+					Stacks:   []string{"some-stack"},
 				}))
 			})
 		})
@@ -274,11 +274,11 @@ func testRuntimeVersionResolver(t *testing.T, context spec.G, it spec.S) {
 				Expect(err).NotTo(HaveOccurred())
 
 				Expect(dependency).To(Equal(postal.Dependency{
-					ID:      "dotnet-core-aspnet-runtime",
-					Version: "1.2.2",
-					URI:     "some-uri",
-					SHA256:  "some-sha",
-					Stacks:  []string{"some-stack"},
+					ID:       "dotnet-core-aspnet-runtime",
+					Version:  "1.2.2",
+					URI:      "some-uri",
+					Checksum: "sha512:some-sha",
+					Stacks:   []string{"some-stack"},
 				}))
 			})
 		})
@@ -308,11 +308,11 @@ func testRuntimeVersionResolver(t *testing.T, context spec.G, it spec.S) {
 				Expect(err).NotTo(HaveOccurred())
 
 				Expect(dependency).To(Equal(postal.Dependency{
-					ID:      "dotnet-core-aspnet-runtime",
-					Version: "2.2.4",
-					URI:     "some-uri",
-					SHA256:  "some-sha",
-					Stacks:  []string{"some-stack"},
+					ID:       "dotnet-core-aspnet-runtime",
+					Version:  "2.2.4",
+					URI:      "some-uri",
+					Checksum: "sha512:some-sha",
+					Stacks:   []string{"some-stack"},
 				}))
 			})
 		})
@@ -353,14 +353,14 @@ version = "some-version"
 
 [[metadata.dependencies]]
 id = "dotnet-core-aspnet-runtime"
-sha256 = "some-sha"
+checksum = "sha512:some-sha"
 stacks = ["some-stack"]
 uri = "some-uri"
 version = "invalid-version"
 
 [[metadata.dependencies]]
 id = "dotnet-core-aspnet-runtime"
-sha256 = "some-sha"
+checksum = "sha512:some-sha"
 stacks = ["some-stack"]
 uri = "some-uri"
 version = "2.2.4"
