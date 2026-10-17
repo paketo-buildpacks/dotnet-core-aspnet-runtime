@@ -82,7 +82,7 @@ func (f Fetcher) GetReleases() (versionology.VersionFetcherArray, error) {
 				Runtime struct {
 					Version string        `json:"version"`
 					Files   []ReleaseFile `json:"files"`
-				} `json:"aspnetcore-runtime,omitempty"`
+				} `json:"aspnetcore-runtime"`
 			} `json:"releases"`
 		}
 
