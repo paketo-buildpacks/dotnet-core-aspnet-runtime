@@ -18,7 +18,7 @@ func Detect(environment Environment, logger scribe.Emitter) packit.DetectFunc {
 		if environment.DotnetRuntimeVersion != "" {
 			requirements = append(requirements, packit.BuildPlanRequirement{
 				Name: "dotnet-core-aspnet-runtime",
-				Metadata: map[string]interface{}{
+				Metadata: map[string]any{
 					"version-source": "BP_DOTNET_RUNTIME_VERSION",
 					"version":        environment.DotnetRuntimeVersion,
 				},
@@ -29,7 +29,7 @@ func Detect(environment Environment, logger scribe.Emitter) packit.DetectFunc {
 			logger.Subprocess(scribe.YellowColor("WARNING: BP_DOTNET_FRAMEWORK_VERSION is deprecated and will be removed in a future version. Please use BP_DOTNET_RUNTIME_VERSION instead."))
 			requirements = append(requirements, packit.BuildPlanRequirement{
 				Name: "dotnet-core-aspnet-runtime",
-				Metadata: map[string]interface{}{
+				Metadata: map[string]any{
 					"version-source": "BP_DOTNET_FRAMEWORK_VERSION",
 					"version":        environment.DeprecatedDotnetFrameworkVersion,
 				},
