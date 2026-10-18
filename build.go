@@ -18,7 +18,7 @@ import (
 
 //go:generate faux --interface EntryResolver --output fakes/entry_resolver.go
 type EntryResolver interface {
-	Resolve(string, []packit.BuildpackPlanEntry, []interface{}) (packit.BuildpackPlanEntry, []packit.BuildpackPlanEntry)
+	Resolve(string, []packit.BuildpackPlanEntry, []any) (packit.BuildpackPlanEntry, []packit.BuildpackPlanEntry)
 	MergeLayerTypes(string, []packit.BuildpackPlanEntry) (launch, build bool)
 }
 
@@ -75,7 +75,7 @@ func Build(
 			context.Plan.Entries = append([]packit.BuildpackPlanEntry{
 				{
 					Name: "dotnet-core-aspnet-runtime",
-					Metadata: map[string]interface{}{
+					Metadata: map[string]any{
 						"version":        frameworkVersion,
 						"version-source": "runtimeconfig.json",
 					},
@@ -85,7 +85,7 @@ func Build(
 
 		logger.Process("Resolving ASP.NET Core Runtime version")
 
-		priorities := []interface{}{
+		priorities := []any{
 			"BP_DOTNET_RUNTIME_VERSION",
 			"BP_DOTNET_FRAMEWORK_VERSION",
 			"runtimeconfig.json",
@@ -155,7 +155,7 @@ func Build(
 		logger.Action("Completed in %s", duration.Round(time.Millisecond))
 		logger.Break()
 
-		dotnetCoreAspnetRuntimeLayer.Metadata = map[string]interface{}{
+		dotnetCoreAspnetRuntimeLayer.Metadata = map[string]any{
 			"dependency-checksum": dependency.Checksum,
 		}
 

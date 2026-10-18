@@ -75,7 +75,7 @@ func testRuntimeVersionResolver(t *testing.T, context spec.G, it spec.S) {
 
 		entry = packit.BuildpackPlanEntry{
 			Name: "dotnet-core-aspnet-runtime",
-			Metadata: map[string]interface{}{
+			Metadata: map[string]any{
 				"version-source": "UNKNOWN",
 				"launch":         true,
 			},

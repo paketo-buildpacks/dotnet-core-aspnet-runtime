@@ -88,7 +88,7 @@ func testDetect(t *testing.T, context spec.G, it spec.S) {
 				Requires: []packit.BuildPlanRequirement{
 					{
 						Name: "dotnet-core-aspnet-runtime",
-						Metadata: map[string]interface{}{
+						Metadata: map[string]any{
 							"version-source": "BP_DOTNET_RUNTIME_VERSION",
 							"version":        "1.2.3",
 						},
@@ -134,7 +134,7 @@ func testDetect(t *testing.T, context spec.G, it spec.S) {
 				Requires: []packit.BuildPlanRequirement{
 					{
 						Name: "dotnet-core-aspnet-runtime",
-						Metadata: map[string]interface{}{
+						Metadata: map[string]any{
 							"version-source": "BP_DOTNET_FRAMEWORK_VERSION",
 							"version":        "1.2.3",
 						},

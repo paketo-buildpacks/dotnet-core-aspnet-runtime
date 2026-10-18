@@ -56,7 +56,7 @@ func testBuild(t *testing.T, context spec.G, it spec.S) {
 		entryResolver = &fakes.EntryResolver{}
 		entryResolver.ResolveCall.Returns.BuildpackPlanEntry = packit.BuildpackPlanEntry{
 			Name: "dotnet-core-aspnet-runtime",
-			Metadata: map[string]interface{}{
+			Metadata: map[string]any{
 				"version-source": "BP_DOTNET_FRAMEWORK_VERSION",
 				"version":        "2.5.x",
 				"launch":         true,
@@ -121,7 +121,7 @@ func testBuild(t *testing.T, context spec.G, it spec.S) {
 				Entries: []packit.BuildpackPlanEntry{
 					{
 						Name: "dotnet-core-aspnet-runtime",
-						Metadata: map[string]interface{}{
+						Metadata: map[string]any{
 							"version-source": "BP_DOTNET_FRAMEWORK_VERSION",
 							"version":        "2.5.x",
 							"launch":         true,
@@ -143,7 +143,7 @@ func testBuild(t *testing.T, context spec.G, it spec.S) {
 			"PATH.delim":          ":",
 			"DOTNET_ROOT.default": filepath.Join(layersDir, "dotnet-core-aspnet-runtime"),
 		}))
-		Expect(layer.Metadata).To(Equal(map[string]interface{}{
+		Expect(layer.Metadata).To(Equal(map[string]any{
 			"dependency-checksum": "sha512:some-sha",
 		}))
 
@@ -236,14 +236,14 @@ func testBuild(t *testing.T, context spec.G, it spec.S) {
 		Expect(entryResolver.ResolveCall.Receives.BuildpackPlanEntrySlice).To(Equal([]packit.BuildpackPlanEntry{
 			{
 				Name: "dotnet-core-aspnet-runtime",
-				Metadata: map[string]interface{}{
+				Metadata: map[string]any{
 					"version":        "some-version",
 					"version-source": "runtimeconfig.json",
 				},
 			},
 			{
 				Name: "dotnet-core-aspnet-runtime",
-				Metadata: map[string]interface{}{
+				Metadata: map[string]any{
 					"version-source": "BP_DOTNET_FRAMEWORK_VERSION",
 					"version":        "2.5.x",
 					"launch":         true,
@@ -305,7 +305,7 @@ func testBuild(t *testing.T, context spec.G, it spec.S) {
 					Entries: []packit.BuildpackPlanEntry{
 						{
 							Name: "dotnet-core-aspnet-runtime",
-							Metadata: map[string]interface{}{
+							Metadata: map[string]any{
 								"version-source": "BP_DOTNET_FRAMEWORK_VERSION",
 								"version":        "2.5.x",
 								"launch":         true,
@@ -322,14 +322,14 @@ func testBuild(t *testing.T, context spec.G, it spec.S) {
 			Expect(entryResolver.ResolveCall.Receives.BuildpackPlanEntrySlice).To(Equal([]packit.BuildpackPlanEntry{
 				{
 					Name: "dotnet-core-aspnet-runtime",
-					Metadata: map[string]interface{}{
+					Metadata: map[string]any{
 						"version":        "some-version",
 						"version-source": "runtimeconfig.json",
 					},
 				},
 				{
 					Name: "dotnet-core-aspnet-runtime",
-					Metadata: map[string]interface{}{
+					Metadata: map[string]any{
 						"version-source": "BP_DOTNET_FRAMEWORK_VERSION",
 						"version":        "2.5.x",
 						"launch":         true,
@@ -372,7 +372,7 @@ func testBuild(t *testing.T, context spec.G, it spec.S) {
 					Entries: []packit.BuildpackPlanEntry{
 						{
 							Name: "dotnet-core-aspnet-runtime",
-							Metadata: map[string]interface{}{
+							Metadata: map[string]any{
 								"version-source": "BP_DOTNET_FRAMEWORK_VERSION",
 								"version":        "2.5.x",
 								"launch":         true,
@@ -403,7 +403,7 @@ func testBuild(t *testing.T, context spec.G, it spec.S) {
 						Entries: []packit.BuildpackPlanEntry{
 							{
 								Name: "dotnet-core-aspnet-runtime",
-								Metadata: map[string]interface{}{
+								Metadata: map[string]any{
 									"version-source": "BP_DOTNET_FRAMEWORK_VERSION",
 									"version":        "2.5.x",
 								},
@@ -428,7 +428,7 @@ func testBuild(t *testing.T, context spec.G, it spec.S) {
 						Entries: []packit.BuildpackPlanEntry{
 							{
 								Name: "dotnet-core-aspnet-runtime",
-								Metadata: map[string]interface{}{
+								Metadata: map[string]any{
 									"version-source": "BP_DOTNET_FRAMEWORK_VERSION",
 									"version":        "2.5.x",
 								},
@@ -457,7 +457,7 @@ func testBuild(t *testing.T, context spec.G, it spec.S) {
 						Entries: []packit.BuildpackPlanEntry{
 							{
 								Name: "dotnet-core-aspnet-runtime",
-								Metadata: map[string]interface{}{
+								Metadata: map[string]any{
 									"version-source": "BP_DOTNET_FRAMEWORK_VERSION",
 									"version":        "2.5.x",
 								},
@@ -482,7 +482,7 @@ func testBuild(t *testing.T, context spec.G, it spec.S) {
 						Entries: []packit.BuildpackPlanEntry{
 							{
 								Name: "dotnet-core-aspnet-runtime",
-								Metadata: map[string]interface{}{
+								Metadata: map[string]any{
 									"version-source": "BP_DOTNET_FRAMEWORK_VERSION",
 									"version":        "2.5.x",
 								},
@@ -507,7 +507,7 @@ func testBuild(t *testing.T, context spec.G, it spec.S) {
 						Entries: []packit.BuildpackPlanEntry{
 							{
 								Name: "dotnet-core-aspnet-runtime",
-								Metadata: map[string]interface{}{
+								Metadata: map[string]any{
 									"version-source": "BP_DOTNET_FRAMEWORK_VERSION",
 									"version":        "2.5.x",
 								},
@@ -529,7 +529,7 @@ func testBuild(t *testing.T, context spec.G, it spec.S) {
 						Entries: []packit.BuildpackPlanEntry{
 							{
 								Name: "dotnet-core-runtime",
-								Metadata: map[string]interface{}{
+								Metadata: map[string]any{
 									"version-source": "BP_DOTNET_FRAMEWORK_VERSION",
 									"version":        "2.5.x",
 								},
