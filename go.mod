@@ -110,7 +110,7 @@ require (
 	github.com/containerd/log/otel v0.1.0 // indirect
 	github.com/containerd/platforms v1.0.0-rc.5 // indirect
 	github.com/containerd/plugin v1.1.0 // indirect
-	github.com/containerd/stargz-snapshotter/estargz v0.19.0 // indirect
+	github.com/containerd/stargz-snapshotter/estargz v0.19.1 // indirect
 	github.com/containerd/ttrpc v1.2.10 // indirect
 	github.com/containerd/typeurl/v2 v2.3.0 // indirect
 	github.com/containers/libtrust v0.0.0-20230121012942-c1716e8a8d01 // indirect
@@ -328,7 +328,7 @@ require (
 	google.golang.org/genproto v0.0.0-20261012220534-4341edf3f941 // indirect
 	google.golang.org/genproto/googleapis/api v0.0.0-20261012220534-4341edf3f941 // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20261019180522-ce908d29299b // indirect
-	google.golang.org/grpc v1.84.0 // indirect
+	google.golang.org/grpc v1.85.0 // indirect
 	google.golang.org/protobuf v1.36.12 // indirect
 	gopkg.in/warnings.v0 v0.1.2 // indirect
 	howett.net/plist v1.0.1 // indirect
