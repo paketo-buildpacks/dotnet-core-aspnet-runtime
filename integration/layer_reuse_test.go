@@ -172,7 +172,7 @@ func testLayerReuse(t *testing.T, context spec.G, it spec.S) {
 					settings.Buildpacks.BuildPlan.Online,
 				).
 				WithEnv(map[string]string{
-					"BP_DOTNET_FRAMEWORK_VERSION": "8.*",
+					"BP_DOTNET_FRAMEWORK_VERSION": "10.*",
 				}).
 				Execute(name, source)
 			Expect(err).NotTo(HaveOccurred(), logs.String())
@@ -193,7 +193,7 @@ func testLayerReuse(t *testing.T, context spec.G, it spec.S) {
 					settings.Buildpacks.BuildPlan.Online,
 				).
 				WithEnv(map[string]string{
-					"BP_DOTNET_FRAMEWORK_VERSION": "9.*",
+					"BP_DOTNET_FRAMEWORK_VERSION": "11.*",
 				}).
 				Execute(name, source)
 			Expect(err).NotTo(HaveOccurred(), logs.String())
@@ -208,7 +208,7 @@ func testLayerReuse(t *testing.T, context spec.G, it spec.S) {
 			Expect(logs).To(ContainLines(
 				"  Resolving ASP.NET Core Runtime version",
 				"    Candidate version sources (in priority order):",
-				`      BP_DOTNET_FRAMEWORK_VERSION -> "9.*"`,
+				`      BP_DOTNET_FRAMEWORK_VERSION -> "11.*"`,
 				MatchRegexp(`      runtimeconfig.json          -> "\d+\.\d+\.\d+"`),
 				`      <unknown>                   -> ""`,
 				"",
